@@ -29,11 +29,11 @@ import com.yihengtang.yihengtang.wxpayimpl.MyConfig;
 public class PayController {
 
 	@Autowired
-	private UserService serService;
+	private UserService userService;
 
 	@RequestMapping(value = "/openid", method = RequestMethod.GET)
 	public String openid(String session) {
-		return serService.openid(session);
+		return userService.openid(session);
 	}
 
 	@RequestMapping(value = "/order", method = RequestMethod.GET)
@@ -83,6 +83,9 @@ public class PayController {
 			// 再次签名，这个签名用于小程序端调用wx.requesetPayment方法
 			String paySign = PayUtil.sign(stringSignTemp, config.getKey(), "utf-8").toUpperCase();
 			response.put("paySign", paySign);
+			
+			//预约
+			userService.reservation(openid);
 		}
 		return response;
 

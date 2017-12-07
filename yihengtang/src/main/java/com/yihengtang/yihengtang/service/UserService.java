@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.yihengtang.yihengtang.dao.UserMapper;
+import com.yihengtang.yihengtang.entity.Experts;
 import com.yihengtang.yihengtang.entity.Reservation;
 
 @Service
@@ -23,7 +24,7 @@ public class UserService {
 	
 	
 	public String attentionAndNotification(String openid) {
-		int u_id = userMppaer.user_id(openid);
+		int u_id = userMppaer.userId(openid);
 		int attention = userMppaer.attention(u_id);
 
 		List<String> message = userMppaer.notification(u_id);
@@ -55,4 +56,15 @@ public class UserService {
 		List<Reservation> myReservationAchieve = userMppaer.myReservationAchieve(openid);
 		return myReservationAchieve;
 	}
+	
+    /**
+     * 用户付款后预约，通过openid查出是哪个用户的预约和预约的医生id
+     * @param openid
+     * @return
+     */
+	public void reservation(String openid) {
+		Experts e_id = new Experts();
+		userMppaer.addReservation(e_id.getId(),userMppaer.userId(openid),0);
+	}
+	
 }

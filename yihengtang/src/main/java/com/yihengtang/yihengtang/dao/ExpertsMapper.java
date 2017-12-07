@@ -16,6 +16,12 @@ import com.yihengtang.yihengtang.entity.Experts;
 @Mapper
 public interface ExpertsMapper {
 
+	/**
+	 * 查询专家Id
+	 * @return
+	 */
+//	@Select("select id from experts")
+//	int experts();
 	
 	/**
 	 * 按专家名字查询

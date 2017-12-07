@@ -32,8 +32,8 @@ public interface UserMapper {
 	@Select("select COUNT(*) from experts e,user u where u.id = e.u_id and u.id = #{u_id}")
 	int attention(int u_id);
 	
-	@Select("select id from user where openid = #{openid}")
-	int user_id(String openid);
+//	@Select("select id from user where openid = #{openid}")
+//	int user_id(String openid);
 	
 	@Select("SELECT message from user u, notification n WHERE u.id = n.u_id and u.id = #{u_id}")
 	List<String> notification(int u_id);
@@ -58,6 +58,15 @@ public interface UserMapper {
 	@Select("SELECT e.name, e.position, e.amount, e.location, e.img, r.treatmenttTime from experts e,user u,reservation r WHERE u.id = r.u_id and r.e_id = e.id and r.state = 1 and u.openid = #{openid}")
 	List<Reservation> myReservationAchieve(String openid);
 	
+	/**
+	 * 通过openid查询用户id
+	 * @param openid
+	 * @return
+	 */
 	@Select("SELECT id FROM user WHERE openid = #{openid}")
 	int userId(String openid);
+	
+	//付款成功后添加预约
+	@Insert("insert into reservation (e_id,u_id,state) values(#{e_id},#{u_id},#{state})")
+	int addReservation(int e_id, int u_id, int state);
 }
