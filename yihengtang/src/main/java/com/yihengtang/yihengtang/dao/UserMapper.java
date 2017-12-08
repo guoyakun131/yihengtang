@@ -35,8 +35,21 @@ public interface UserMapper {
 //	@Select("select id from user where openid = #{openid}")
 //	int user_id(String openid);
 	
+	/**
+	 * 按用户ID查询通知消息
+	 * @param u_id
+	 * @return
+	 */
 	@Select("SELECT message from user u, notification n WHERE u.id = n.u_id and u.id = #{u_id}")
 	List<String> notification(int u_id);
+	
+	/**
+	 * 添加通知消息
+	 * @param message
+	 * @param u_id
+	 */
+	@Select("insert into notification (message,u_id) values(#{message},#{u_id})")
+	void addNotification(String message,int u_id);
 	
 	@Select("SELECT COUNT(*) FROM reservation r, user u WHERE u.reservation_id = r.u_id and u.openid = #{openid}")
 	int reservationNumber(String openid);
@@ -69,4 +82,5 @@ public interface UserMapper {
 	//付款成功后添加预约
 	@Insert("insert into reservation (e_id,u_id,state) values(#{e_id},#{u_id},#{state})")
 	int addReservation(@Param("e_id")int e_id, @Param("u_id")int u_id, @Param("state")int state);
+
 }

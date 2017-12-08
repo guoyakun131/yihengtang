@@ -30,7 +30,7 @@ public class UserService {
 	public String attentionAndNotification(String openid) {
 		int u_id = userMppaer.userId(openid);
 		int attention = userMppaer.attention(u_id);
-
+         //查询通知消息
 		List<String> message = userMppaer.notification(u_id);
 		JsonObject object = new JsonObject();
 		Gson gson = new Gson();
@@ -75,7 +75,19 @@ public class UserService {
      * @return
      */
 	public void reservation(String openid,int e_id) {
-		userMppaer.addReservation(e_id,userMppaer.userId(openid),0);
+		int u_id = userMppaer.userId(openid);
+		userMppaer.addReservation(e_id,u_id,0);
+		//添加通知
+		userMppaer.addNotification("恭喜预约成功", u_id);
 	}
+	
+//	/**
+//	 * 按用户id添加通知
+//	 * @param message
+//	 * @param u_id
+//	 */
+//	public void addNotification(String message,int u_id) {
+//		userMppaer.addNotification(message, u_id);
+//	}
 	
 }

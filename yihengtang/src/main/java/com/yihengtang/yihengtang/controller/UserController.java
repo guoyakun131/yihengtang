@@ -18,6 +18,11 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
+	/**
+	 * 返回通知消息和
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping("/atten")
 	public String attentionAndNotification(String session) {
 		return userService.attentionAndNotification(userService.openid(session));
