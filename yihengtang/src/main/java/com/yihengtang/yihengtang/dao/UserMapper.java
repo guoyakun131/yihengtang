@@ -68,5 +68,5 @@ public interface UserMapper {
 	
 	//付款成功后添加预约
 	@Insert("insert into reservation (e_id,u_id,state) values(#{e_id},#{u_id},#{state})")
-	int addReservation(int e_id, int u_id, int state);
+	int addReservation(@Param("e_id")int e_id, @Param("u_id")int u_id, @Param("state")int state);
 }
