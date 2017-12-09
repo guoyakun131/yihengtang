@@ -8,6 +8,7 @@ public class Reservation {
 	private String location;
 	private String img;
 	private String treatmenttTime;
+	private int numberOfPatients;
 
 	public String getName() {
 		return name;
@@ -57,4 +58,14 @@ public class Reservation {
 		this.treatmenttTime = treatmenttTime;
 	}
 
+	public int getNumberOfPatients() {
+		return numberOfPatients;
+	}
+
+	public void setNumberOfPatients(int numberOfPatients) {
+		this.numberOfPatients = numberOfPatients;
+	}
+
+	
+	
 }

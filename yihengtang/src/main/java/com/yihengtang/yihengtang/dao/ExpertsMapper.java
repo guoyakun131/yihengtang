@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.yihengtang.yihengtang.entity.Experts;
 
@@ -53,4 +54,7 @@ public interface ExpertsMapper {
 	
 	@Select("SELECT * from experts,department WHERE experts.department_id = department.experts_id and department.department=#{department}")
 	List<Experts> expertsClassify(String department);
+	
+	@Update ("update experts set numberOfPatients= numberOfPatients + 1 where id = #{id}")
+	int numberOfPatients(int id);
 }

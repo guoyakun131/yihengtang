@@ -34,7 +34,10 @@ public class ExpertsController {
 	@RequestMapping("/name")
 	public Experts exprtsByName(String name) {
 		 Experts experts = expertsMapper.findExpertsByName(name);
-		System.out.println(experts);
+//		  int i = Integer.valueOf(experts.getAmount()).intValue();
+//		  String amount = String.valueOf(i / 100);
+//		  experts.setAmount(amount);
+//		System.out.println(experts.getAmount());
 		return experts;
 	}
 	

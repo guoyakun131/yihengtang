@@ -48,9 +48,6 @@ public class PayController {
 		openid = request.getParameter("openid");
 		// 预约的医生id
 		e_id = Integer.valueOf(request.getParameter("id")).intValue();
-		
-		
-		
 		experts = userService.expertsID(e_id);
 		MyConfig config = new MyConfig();
 		WXPay wxpay = new WXPay(config);
@@ -100,8 +97,10 @@ public class PayController {
 
 	}
 
-	@RequestMapping(value = "/wxNotify", method = RequestMethod.POST)
+	@RequestMapping(value = "/wxNotify", method = RequestMethod.GET)
 	public void wxNotify(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		//这句话的意思，是让浏览器用utf8来解析返回的数据  
+      //  response.setHeader("Content-type", "text/html;charset=UTF-8");  
 		BufferedReader br = new BufferedReader(new InputStreamReader((ServletInputStream) request.getInputStream()));
 		String line = null;
 		StringBuilder sb = new StringBuilder();

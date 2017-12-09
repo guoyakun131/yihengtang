@@ -1,6 +1,7 @@
 package com.yihengtang.yihengtang.service;
 
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,6 +47,8 @@ public class UserService {
 
 	public List<Reservation> myReservation(String openid) {
 		List<Reservation> myReservation = userMppaer.myReservation(openid);
+		
+		
 		//
 //		JsonObject object = new JsonObject();
 		//Gson gson = new Gson();
@@ -76,9 +79,38 @@ public class UserService {
      */
 	public void reservation(String openid,int e_id) {
 		int u_id = userMppaer.userId(openid);
+		//添加预约
 		userMppaer.addReservation(e_id,u_id,0);
+		
+		//加1
+		expertsMapper.numberOfPatients(e_id);
+		
 		//添加通知
 		userMppaer.addNotification("恭喜预约成功", u_id);
+	}
+	
+	/**
+	 * 查询用户时候绑定手机号
+	 * @param openid
+	 * @return
+	 */
+	public String phoneNumber(String openid) {
+		return userMppaer.phoneNumber(openid);
+	}
+	/**
+	 * 产生4位随机数(0000-9999)
+	 * @param session
+	 * @return
+	 */
+	public String VerificationCode() {
+		 Random random = new Random();
+	        String fourRandom = random.nextInt(10000) + "";
+	        int randLength = fourRandom.length();
+	        if(randLength<4){
+	          for(int i=1; i<=4-randLength; i++)
+	              fourRandom = "0" + fourRandom  ;
+	      }
+	        return fourRandom;
 	}
 	
 //	/**

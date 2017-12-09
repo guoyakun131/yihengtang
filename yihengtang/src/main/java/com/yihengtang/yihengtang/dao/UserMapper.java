@@ -59,7 +59,7 @@ public interface UserMapper {
 	 * @param openid
 	 * @return
 	 */
-	@Select("SELECT e.name, e.position, e.amount, e.img from experts e,user u,reservation r WHERE u.id = r.u_id and r.e_id = e.id and r.state = 0 and u.openid = #{openid}")
+	@Select("SELECT e.name, e.position, e.amount, e.img, e.numberOfPatients from experts e,user u,reservation r WHERE u.id = r.u_id and r.e_id = e.id and r.state = 0 and u.openid = #{openid}")
 	List<Reservation> myReservation(String openid);
 	
 	
@@ -78,6 +78,9 @@ public interface UserMapper {
 	 */
 	@Select("SELECT id FROM user WHERE openid = #{openid}")
 	int userId(String openid);
+	
+	@Select("SELECT phoneNumber FROM user WHERE openid = #{openid}")
+	String phoneNumber(String openid);
 	
 	//付款成功后添加预约
 	@Insert("insert into reservation (e_id,u_id,state) values(#{e_id},#{u_id},#{state})")
