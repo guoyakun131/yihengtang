@@ -90,7 +90,7 @@ public class UserService {
 	}
 	
 	/**
-	 * 查询用户时候绑定手机号
+	 * 查询用户是否绑定手机号
 	 * @param openid
 	 * @return
 	 */
@@ -111,6 +111,14 @@ public class UserService {
 	              fourRandom = "0" + fourRandom  ;
 	      }
 	        return fourRandom;
+	}
+	
+	/**
+	 * 绑定
+	 * @param phoneNumber
+	 */
+	public void binDing(String phoneNumber) {
+		userMppaer.bindingPhone(phoneNumber);
 	}
 	
 //	/**
