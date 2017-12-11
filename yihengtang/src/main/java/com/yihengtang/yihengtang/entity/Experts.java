@@ -1,10 +1,13 @@
 package com.yihengtang.yihengtang.entity;
 
+import org.springframework.stereotype.Component;
+
 /**
  * 专家类
  * @author 郭亚坤
  * @version 1.0.0
  */
+@Component
 public class Experts {
 	
 	/**

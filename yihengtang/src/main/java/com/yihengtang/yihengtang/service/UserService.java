@@ -22,6 +22,11 @@ public class UserService {
 	@Autowired
 	private ExpertsMapper expertsMapper;
 	
+	/**
+	 * 查询openid
+	 * @param session
+	 * @return
+	 */
 	public String openid(String session) {
 		return userMppaer.Openid(session);
 	}
@@ -120,6 +125,37 @@ public class UserService {
 	public void binDing(String phoneNumber) {
 		userMppaer.bindingPhone(phoneNumber);
 	}
+	
+	/**
+	 * 取消预约
+	 * @param openid
+	 */
+	public void cancel(int e_id,int u_id) {
+		userMppaer.cancel(e_id,u_id);
+	}
+	
+	/**
+	 * 查看是否有过预约记录
+	 * @param openid
+	 * @return
+	 */
+	public boolean record(String openid) {
+		 int i= userMppaer.record(userMppaer.userId(openid));
+		 if(i == 0) {
+			 return false;
+		 }
+		 return true;
+	}
+	
+	/**
+	 * 按openid查询出userid
+	 * @param openid
+	 * @return
+	 */
+	public int userId(String openid) {
+		return userMppaer.userId(openid);
+	}
+	
 	
 //	/**
 //	 * 按用户id添加通知

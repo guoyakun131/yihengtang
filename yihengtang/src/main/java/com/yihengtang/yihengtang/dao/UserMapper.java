@@ -61,7 +61,7 @@ public interface UserMapper {
 	 * @param openid
 	 * @return
 	 */
-	@Select("SELECT e.name, e.position, e.amount, e.img, e.numberOfPatients from experts e,user u,reservation r WHERE u.id = r.u_id and r.e_id = e.id and r.state = 0 and u.openid = #{openid}")
+	@Select("SELECT e.id,e.name, e.position, e.amount, e.img, e.numberOfPatients from experts e,user u,reservation r WHERE u.id = r.u_id and r.e_id = e.id and r.state = 0 and u.openid = #{openid}")
 	List<Reservation> myReservation(String openid);
 
 	/**
@@ -103,4 +103,18 @@ public interface UserMapper {
 	@Insert("insert into reservation (e_id,u_id,state) values(#{e_id},#{u_id},#{state})")
 	int addReservation(@Param("e_id") int e_id, @Param("u_id") int u_id, @Param("state") int state);
 
+	/**
+	 * 取消预约
+	 * @param openid
+	 */
+	@Update("update reservation set state= 3 where e_id = #{e_id} and u_id = #{u_id}")
+	void cancel(@Param("e_id")int e_id,@Param("u_id")int u_id);
+	
+	/**
+	 *预约记录
+	 * @param u_id
+	 * @return
+	 */
+	@Select("SELECT COUNT(*) from reservation  WHERE state = 1 and u_id = #{u_id}")
+	int record(int u_id);
 }

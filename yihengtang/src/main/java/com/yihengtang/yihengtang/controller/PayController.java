@@ -35,7 +35,7 @@ public class PayController {
 	private String openid;
 
 	private int e_id;
-
+	@Autowired
 	private Experts experts;
 
 	@RequestMapping(value = "/openid", method = RequestMethod.GET)
@@ -46,9 +46,19 @@ public class PayController {
 	@RequestMapping(value = "/order", method = RequestMethod.GET)
 	public Map<String, Object> ordre(HttpServletRequest request) {
 		openid = request.getParameter("openid");
+		
+		
 		// 预约的医生id
 		e_id = Integer.valueOf(request.getParameter("id")).intValue();
 		experts = userService.expertsID(e_id);
+		
+		String amount = experts.getAmount();
+		String amounts = null;
+		if(userService.record(openid)) {
+			int str = Integer.valueOf(amount).intValue()/2;
+			amounts = String.valueOf(str);
+		}
+		
 		MyConfig config = new MyConfig();
 		WXPay wxpay = new WXPay(config);
 
@@ -61,7 +71,7 @@ public class PayController {
 		data.put("out_trade_no", sdf.format(d).toString());
 		data.put("device_info", "");
 		data.put("fee_type", "CNY");
-		data.put("total_fee", experts.getAmount());
+		data.put("total_fee", amounts);
 		data.put("spbill_create_ip", IpUtil.getIpAddr(request).toString());
 		data.put("notify_url", "https://liangyi120.xin/pay/wxNotify");
 		data.put("trade_type", "JSAPI"); // 此处指定为小程序
@@ -117,6 +127,7 @@ public class PayController {
 		WXPay wxpay = new WXPay(config);
 
 		Map<String, String> notifyMap = WXPayUtil.xmlToMap(notifyData); // 转换成map
+		
 		if (wxpay.isPayResultNotifySignatureValid(notifyMap)) {
 			// 签名正确
 			// 进行处理。

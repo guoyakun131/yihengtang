@@ -25,4 +25,9 @@ public class HomeController {
 	public List<Articles> homeWenZhang() {
 		return homeServce.chaXunWenZhang();
 	}
+	
+	@RequestMapping("/read")
+	public void read(int id) {
+		homeServce.read(id);
+	}
 }

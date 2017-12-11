@@ -30,7 +30,6 @@ public class LoginController {
 
 			// 发送请求到微信服务器换去openid 和session_key
 			String resuslt = OpenHttps.httpRequest(httpUrl, "GET", null);
-			System.out.println(resuslt);
 			JsonObject obj = new JsonParser().parse(resuslt).getAsJsonObject();
 
 			if (!obj.has("errcode")) {

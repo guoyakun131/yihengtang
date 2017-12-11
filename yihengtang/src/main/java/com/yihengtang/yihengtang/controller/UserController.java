@@ -3,7 +3,6 @@ package com.yihengtang.yihengtang.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -66,16 +65,15 @@ public class UserController {
 	}
 
 	@RequestMapping("/cancel")
-	public String cancel(String session) {
-		userService.openid(session);
-
-		return "取消成功s";
+	public String cancel(String session, int e_id) {
+		
+		userService.cancel(e_id,userService.userId(userService.openid(session)));
+		return "取消已申请";
 	}
 
 	
 	/**
 	 * 发送验证码
-	 * 
 	 * @param phoneNumber
 	 * @return
 	 */

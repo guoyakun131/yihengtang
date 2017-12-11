@@ -1,7 +1,7 @@
 package com.yihengtang.yihengtang.entity;
 
 public class Reservation {
-
+	private int id;
 	private String name;
 	private String position;
 	private String amount;
@@ -9,6 +9,17 @@ public class Reservation {
 	private String img;
 	private String treatmenttTime;
 	private int numberOfPatients;
+
+	
+	
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;

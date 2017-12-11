@@ -23,5 +23,11 @@ public class HomeService {
 		return wenZhangMapper.findAll();
 	}
 
-	
+	/**
+	 * 按文章ID增加阅读数量
+	 * @param id
+	 */
+	public void read(int id) {
+		wenZhangMapper.read(id);
+	}
 }

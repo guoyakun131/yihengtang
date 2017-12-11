@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.yihengtang.yihengtang.dao.ExpertsMapper;
 import com.yihengtang.yihengtang.entity.Experts;
 import com.yihengtang.yihengtang.service.ExpertsService;
+import com.yihengtang.yihengtang.service.UserService;
 
 /**
  * 专家Controller
@@ -25,6 +26,9 @@ public class ExpertsController {
 	
 	@Autowired
 	private ExpertsMapper expertsMapper;
+	
+	@Autowired
+	private UserService userService;
 	
 	/**
 	 * 按专家名字查询
