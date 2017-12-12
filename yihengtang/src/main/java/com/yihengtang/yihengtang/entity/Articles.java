@@ -19,9 +19,16 @@ public class Articles {
 			 * 文章发布时间
 			 */
     private String time;
+    
+    /**
+     * 文章作者
+     */
+    private String author;
+    
 			/**
 			 * 点赞数量
 			 */
+    
     private String fabulousInt;
 			/**
 			 * 浏览数据量
@@ -57,6 +64,13 @@ public class Articles {
 	}
 	public void setTime(String time) {
 		this.time = time;
+	}
+	
+	public String getAuthor() {
+		return author;
+	}
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 	public String getFabulousInt() {
 		return fabulousInt;

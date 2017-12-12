@@ -78,14 +78,18 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/VerificationCode")
-	public String VerificationCode(String openid, String phoneNumber) {
+	public String VerificationCode(String session, String phoneNumber) {
+		if(session == null && phoneNumber == null) {
+		   return "请输入正确的手机号";
+		}
 		// 查看是否绑定过手机号
-		if (userService.phoneNumber(openid).length() != 0) {
+		if (userService.phoneNumber(userService.openid(session)).length() != 0) {
 			return "手机号已经绑定";
 		}
 
 		// 生成四位随机数作为验证码
 		verificationCode = userService.VerificationCode();
+		System.out.println(verificationCode);
 		// 发送验证码短信到用户手机
 		SendSmsResponse response;
 		try {
@@ -106,9 +110,12 @@ public class UserController {
 	}
 	
 	@RequestMapping("/binding")
-	public String binDing(String openid, String phoneNumber,String code) {
+	public String binDing(String session, String phoneNumber,String code) {
+		System.out.println(session);
+		System.out.println(phoneNumber);
+		System.out.println(code);
 		// 查看是否绑定过手机号
-	    if (userService.phoneNumber(openid).length() != 0) {
+	    if (userService.phoneNumber(userService.openid(session)).length() != 0) {
 		    return "手机号已经绑定";
 		}
 	    

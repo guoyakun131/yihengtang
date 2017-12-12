@@ -38,6 +38,15 @@ public class HomeController {
 		return map;
 	}
 	
+	/**
+	 * 按ID查询文章
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("/articles")
+	public Articles articles(int id) {
+		return articlesMapper.findById(id);
+	}
 	
 	/**
 	 * 阅读量加1
