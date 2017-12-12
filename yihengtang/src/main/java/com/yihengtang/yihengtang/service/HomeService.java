@@ -19,9 +19,9 @@ public class HomeService {
 	 * 查询文章信息
 	 * @return
 	 */
-	public List<Articles> chaXunWenZhang(){
-		return wenZhangMapper.findAll();
-	}
+//	public List<Articles> chaXunWenZhang(){
+//		return wenZhangMapper.findAll();
+//	}
 
 	/**
 	 * 按文章ID增加阅读数量

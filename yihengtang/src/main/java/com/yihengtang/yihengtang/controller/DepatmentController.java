@@ -24,8 +24,9 @@ public class DepatmentController {
     public List<DepartmentAndNumber> depatmentList(){
 		return departmentService.departmentAndNumber();
 	}
-/**按部门查询专家数量
- * 
+	
+/**
+ * 按部门查询专家数量
  * @return
  */
 	@RequestMapping("/number")
