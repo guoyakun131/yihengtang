@@ -122,8 +122,8 @@ public class UserService {
 	 * 绑定
 	 * @param phoneNumber
 	 */
-	public void binDing(String phoneNumber) {
-		userMppaer.bindingPhone(phoneNumber);
+	public void binDing(String phoneNumber,String openid) {
+		userMppaer.bindingPhone(phoneNumber,openid);
 	}
 	
 	/**
@@ -156,7 +156,30 @@ public class UserService {
 		return userMppaer.userId(openid);
 	}
 	
+	/**
+	 * 添加验证码
+	 * @param code
+	 * @param openid
+	 */
+	public void addCode(String code,String openid) {
+		userMppaer.addCode(code, openid);
+	}
 	
+	/**
+	 * 检查验证码
+	 */
+	public String cheakCode(String openid) {
+		return userMppaer.cheakCode(openid);
+	}
+	
+	/**
+	 * 查询通知消息
+	 * @param u_id
+	 * @return
+	 */
+	public List<String> message(int u_id) {
+		return userMppaer.message(u_id);
+	}
 //	/**
 //	 * 按用户id添加通知
 //	 * @param message

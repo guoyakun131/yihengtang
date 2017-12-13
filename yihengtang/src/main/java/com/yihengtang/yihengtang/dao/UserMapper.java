@@ -25,6 +25,11 @@ public interface UserMapper {
 	int updata(@Param("openid") String openid, @Param("rsession_key") String rsession_key,
 			@Param("openidAndSessionKey") String openidAndSessionKey);
 
+	/**
+	 * 查询openid
+	 * @param session
+	 * @return
+	 */
 	@Select("select openid from user where session = #{session}")
 	String Openid(String session);
 
@@ -89,15 +94,15 @@ public interface UserMapper {
 	 * @return
 	 */
 	@Select("SELECT phoneNumber FROM user WHERE openid = #{openid}")
-	String phoneNumber(String openid);
+	String phoneNumber(@Param("openid")String openid);
 
 	/**
 	 * 绑定手机号
 	 * @param state
 	 * @return
 	 */
-	@Insert("insert into user (phoneNumber) values(#{phoneNumber})")
-	void bindingPhone(String phoneNumber);
+	@Update("update user set phoneNumber = #{phoneNumber} where openid = #{openid}")
+	void bindingPhone(@Param("phoneNumber")String phoneNumber,  @Param("openid")String openid);
 
 	// 付款成功后添加预约
 	@Insert("insert into reservation (e_id,u_id,state) values(#{e_id},#{u_id},#{state})")
@@ -117,4 +122,29 @@ public interface UserMapper {
 	 */
 	@Select("SELECT COUNT(*) from reservation  WHERE state = 1 and u_id = #{u_id}")
 	int record(int u_id);
+	
+	/**
+	 * 添加验证码
+	 * @param code
+	 * @param openid
+	 */
+	@Update("update user set code = #{code} where openid = #{openid}")
+	void addCode(@Param("code")String code, @Param("openid")String openid);
+	/**
+	 * 查询验证码
+	 * @param code
+	 * @param openid
+	 * @return
+	 */
+	@Select("SELECT code from user WHERE openid = #{openid}")
+	String cheakCode(@Param("openid")String openid);
+	
+	/**
+	 * 查询通知消息
+	 * @param u_id
+	 * @return
+	 */
+	@Select("SELECT message from notification WHERE u_id = #{u_id}")
+	List<String> message(int u_id);
+	
 }
