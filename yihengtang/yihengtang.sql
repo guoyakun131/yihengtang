@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : 65001
 
- Date: 12/12/2017 16:36:30
+ Date: 13/12/2017 17:54:28
 */
 
 SET NAMES utf8mb4;
@@ -183,7 +183,7 @@ CREATE TABLE `user`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 'on0sC0e3BtYMER4dOJGMMjIz7-Fg', 'b6f15789-476f-407d-b1f5-cf7cfb4a052c', 'on0sC0e3BtYMER4dOJGMMjIz7-FgFQMvjRujlpQBQqjxChxWAA==', 1, 1, '');
+INSERT INTO `user` VALUES (1, 'on0sC0e3BtYMER4dOJGMMjIz7-Fg', '2102b180-89d2-4197-9bb2-c510965da53c', 'on0sC0e3BtYMER4dOJGMMjIz7-FgagyeyyvzgwlOLEwktwKCIw==', 1, 1, '');
 INSERT INTO `user` VALUES (2, '1212', NULL, NULL, 2, NULL, NULL);
 INSERT INTO `user` VALUES (3, 'on0sC0QtEU4y1Ejg4evU-xcI8dBQ', 'c96307f4-7df1-438b-9706-3f5b001b5b71', 'on0sC0QtEU4y1Ejg4evU-xcI8dBQxIcFRtDgSbXFY9f+xpKGUQ==', NULL, NULL, NULL);
 
