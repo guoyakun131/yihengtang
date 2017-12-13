@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : 65001
 
- Date: 11/12/2017 17:53:52
+ Date: 12/12/2017 16:36:30
 */
 
 SET NAMES utf8mb4;
@@ -30,21 +30,22 @@ CREATE TABLE `articles`  (
   `img` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '图片地址',
   `type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '文章类型',
   `text` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '图文',
+  `author` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '作者',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of articles
 -- ----------------------------
-INSERT INTO `articles` VALUES (1, '专家提示刚烧开的水不能引用', '2017-11-24', 11, 23, 'https://liangyi120.xin/images/yisheng1.jpg', '1', '假数据假数据假数据假数据假数据假数据假数据假数据假数据假数据假数据假数据假数据');
-INSERT INTO `articles` VALUES (2, '多喝水睡眠足', '2017-11-24', 113, 225, 'https://liangyi120.xin/images/yisheng2.jpg', '1', '假数据假数据假数据假数据假数据假数据s');
-INSERT INTO `articles` VALUES (3, '每天坚持跑步', '2017-11-24', 11, 21, 'https://liangyi120.xin/images/yisheng3.jpg', '1', '假数据假数据假数据假数据假数据假数据假数据');
-INSERT INTO `articles` VALUES (4, '适当运动', '2017-11-24', 11, 29, 'https://liangyi120.xin/images/yisheng4.jpg', '1', '假数据假数据假数据假数据假数据假数据假数据');
-INSERT INTO `articles` VALUES (6, '饭后', '2017-11-24', 112, 28, 'https://liangyi120.xin/images/yisheng5.jpg', '1', '假数据假数据假数据假数据假数据假数据');
-INSERT INTO `articles` VALUES (7, '专家提示刚烧开的水不能引用', '2017-11-24', 123, 22, 'https://liangyi120.xin/images/yisheng6.jpg', '1', '假数据假数据假数据假数据');
-INSERT INTO `articles` VALUES (8, '专家提示刚烧开的水不能引用', '2017-11-24', 43, 221, 'https://liangyi120.xin/images/yisheng7.jpg', '1', '假数据假数据');
-INSERT INTO `articles` VALUES (9, '专家提示刚烧开的水不能引用', '2017-11-24', 14, 422, 'https://liangyi120.xin/images/yisheng8.jpg', '1', NULL);
-INSERT INTO `articles` VALUES (10, '专家提示刚烧开的水不能引用', '2017-11-24', 18, 20, 'https://liangyi120.xin/images/yisheng9.jpg', '1', NULL);
+INSERT INTO `articles` VALUES (1, '专家提示刚烧开的水不能引用', '2017-11-24', 11, 23, 'https://liangyi120.xin/images/yisheng1.jpg', '1', '假数据假数据假数据假数据假 <image src=\'{{img}}\'></image>数据假数据假数据假数据假数据假数据假数据假数据假数据', '刘备');
+INSERT INTO `articles` VALUES (2, '多喝水睡眠足', '2017-11-24', 113, 225, 'https://liangyi120.xin/images/yisheng2.jpg', '1', '假数据假数据假数据假数据假数据假数据s', '张飞');
+INSERT INTO `articles` VALUES (3, '每天坚持跑步', '2017-11-24', 11, 21, 'https://liangyi120.xin/images/yisheng3.jpg', '2', '假数据假数据假数据假数据假数据假数据假数据', '关于');
+INSERT INTO `articles` VALUES (4, '适当运动', '2017-11-24', 11, 29, 'https://liangyi120.xin/images/yisheng4.jpg', '2', '假数据假数据假数据假数据假数据假数据假数据', NULL);
+INSERT INTO `articles` VALUES (6, '饭后', '2017-11-24', 112, 28, 'https://liangyi120.xin/images/yisheng5.jpg', '3', '假数据假数据假数据假数据假数据假数据', NULL);
+INSERT INTO `articles` VALUES (7, '专家提示刚烧开的水不能引用', '2017-11-24', 123, 22, 'https://liangyi120.xin/images/yisheng6.jpg', '3', '假数据假数据假数据假数据', NULL);
+INSERT INTO `articles` VALUES (8, '专家提示刚烧开的水不能引用', '2017-11-24', 43, 221, 'https://liangyi120.xin/images/yisheng7.jpg', '4', '假数据假数据', NULL);
+INSERT INTO `articles` VALUES (9, '专家提示刚烧开的水不能引用', '2017-11-24', 14, 422, 'https://liangyi120.xin/images/yisheng8.jpg', '4', NULL, NULL);
+INSERT INTO `articles` VALUES (10, '专家提示刚烧开的水不能引用', '2017-11-24', 18, 20, 'https://liangyi120.xin/images/yisheng9.jpg', '5', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for department
@@ -182,8 +183,8 @@ CREATE TABLE `user`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 'on0sC0e3BtYMER4dOJGMMjIz7-Fg', '44675918-2a5f-4658-81ab-a5b02459e72a', 'on0sC0e3BtYMER4dOJGMMjIz7-Fgcv/9unisgGwrvWH9VB31rg==', 1, 1, '');
+INSERT INTO `user` VALUES (1, 'on0sC0e3BtYMER4dOJGMMjIz7-Fg', 'b6f15789-476f-407d-b1f5-cf7cfb4a052c', 'on0sC0e3BtYMER4dOJGMMjIz7-FgFQMvjRujlpQBQqjxChxWAA==', 1, 1, '');
 INSERT INTO `user` VALUES (2, '1212', NULL, NULL, 2, NULL, NULL);
-INSERT INTO `user` VALUES (3, 'on0sC0QtEU4y1Ejg4evU-xcI8dBQ', '10c9edee-95d0-4ca1-997a-cb73d1863265', 'on0sC0QtEU4y1Ejg4evU-xcI8dBQfTAgxdd/15Yo56VK2bubew==', NULL, NULL, NULL);
+INSERT INTO `user` VALUES (3, 'on0sC0QtEU4y1Ejg4evU-xcI8dBQ', 'c96307f4-7df1-438b-9706-3f5b001b5b71', 'on0sC0QtEU4y1Ejg4evU-xcI8dBQxIcFRtDgSbXFY9f+xpKGUQ==', NULL, NULL, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;
