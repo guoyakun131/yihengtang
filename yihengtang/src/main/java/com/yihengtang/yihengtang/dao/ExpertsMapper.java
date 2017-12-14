@@ -51,10 +51,16 @@ public interface ExpertsMapper {
 	 */
 	@Select("select SUM(quantity) from experts where quantity")
 	int quantity();
-	
+	/**
+	 * 查询某部门的所有医生
+	 * @param department
+	 * @return
+	 */
 	@Select("SELECT * from experts,department WHERE experts.department_id = department.experts_id and department.department=#{department}")
 	List<Experts> expertsClassify(String department);
 	
 	@Update ("update experts set numberOfPatients= numberOfPatients + 1 where id = #{id}")
 	int numberOfPatients(int id);
+	
+	
 }

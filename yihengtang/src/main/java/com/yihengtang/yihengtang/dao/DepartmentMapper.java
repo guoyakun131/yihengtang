@@ -34,6 +34,12 @@ public interface DepartmentMapper {
 	@Select("SELECT d.department, COUNT(e.department_id) as number FROM experts e,department d WHERE e.department_id = d.experts_id GROUP BY d.department")
 	List<DepartmentAndNumber> departmentAndNumber();
 	
+	/**
+	 * 查询部门名称
+	 * @return
+	 */
+	@Select("SELECT department FROM department")
+	List<DepartmentAndNumber> departmentName();
 	
 }
 
