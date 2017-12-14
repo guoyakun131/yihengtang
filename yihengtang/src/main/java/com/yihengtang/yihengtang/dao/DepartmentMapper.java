@@ -35,11 +35,12 @@ public interface DepartmentMapper {
 	List<DepartmentAndNumber> departmentAndNumber();
 	
 	/**
-	 * 查询出所有部门名称
+	 * 查询部门名称
 	 * @return
 	 */
 	@Select("SELECT department FROM department")
 	List<DepartmentAndNumber> departmentName();
+	
 }
 
 
