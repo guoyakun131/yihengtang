@@ -22,8 +22,8 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@Autowired
-	private ExpertsService expertService;
+//	@Autowired
+//	private ExpertsService expertService;
 	
 	private String verificationCode = null;
 
@@ -64,6 +64,12 @@ public class UserController {
 		return userService.myReservationAchieve(userService.openid(session));
 	}
 
+	/**
+	 * 取消预约
+	 * @param session
+	 * @param e_id
+	 * @return
+	 */
 	@RequestMapping("/cancel")
 	public String cancel(String session, int e_id) {
 		
@@ -72,7 +78,7 @@ public class UserController {
 	}
 
 	
-	/**
+	/**	
 	 * 发送验证码
 	 * @param phoneNumber
 	 * @return

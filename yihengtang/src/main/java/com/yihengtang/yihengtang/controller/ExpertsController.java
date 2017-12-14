@@ -27,8 +27,8 @@ public class ExpertsController {
 	@Autowired
 	private ExpertsMapper expertsMapper;
 	
-	@Autowired
-	private UserService userService;
+//	@Autowired
+//	private UserService userService;
 	
 	/**
 	 * 按专家名字查询
