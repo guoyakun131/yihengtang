@@ -1,4 +1,4 @@
-package com.yihengtang.yihengtang.util;
+﻿package com.yihengtang.yihengtang.util;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
