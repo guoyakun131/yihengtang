@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.yihengtang.yihengtang.dao.AdminMapper;
 import com.yihengtang.yihengtang.entity.Admin;
 import com.yihengtang.yihengtang.service.AdminService;
 
@@ -34,7 +33,7 @@ public class AdminController {
 	@RequestMapping("/login")
 	public String adminLogin() {
 		return "admin/login";
-	}
+	}	
 	
 	/**
 	 * 管理员登陆处理
@@ -65,4 +64,18 @@ public class AdminController {
 		return "admin/home";
 	}
 	
+	/**
+	 * 退出登录
+	 * @return
+	 */
+	@RequestMapping("/logout")
+	public String adminLogout() {
+		return "admin/login";
+	}	
+	
+	@RequestMapping("/pass")
+	public String pass(HttpServletRequest request,Model model) {
+		
+		return "admin/login";
+	}	
 }

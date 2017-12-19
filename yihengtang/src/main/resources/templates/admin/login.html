@@ -4,32 +4,38 @@
 <head>
 <title>登陆</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0" />
-	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"></link>
-	<script type="text/javascript" src="/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../css/adminLogin.css"></link>
+    <link href="../jquery-easyui-1.5.3/themes/default/easyui.css" rel="stylesheet" />
+    <link href="../jquery-easyui-1.5.3/themes/icon.css" rel="stylesheet" />
+    <script src="../jquery-easyui-1.5.3/jquery.min.js"></script>
+    <script src="../jquery-easyui-1.5.3/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../jquery-easyui-1.5.3/locale/easyui-lang-zh_CN.js"></script>
+    <style type="text/css">
+    body {
+/*url 内放置为图片的路径地址*/
+/*no-repeat 图片不平铺*/
+background: url(../adminImg/adminLogin.jpg) no-repeat;
+/*图片自适应整个页面*/
+background-size: cover;
+/*图片自适应整个页面*/
+}
+
+#div1{
+position:relative;
+left:56%;
+top:245px;
+
+width:450px; 
+height:400px;
+}
+    </style>
+   <script type="text/javascript">
+  
+   </script>
 </head>
 <body>
- 
-  <div class="login">
- 
-  <h2>管理登录</h2>
-  
-   <hr class="hr"/>
-   <form action="/admin/home" method="POST">
-    <div class="input-group input-group-lg" id="input">
-     <span class="input-group-addon" id="sizing-addon1">账户</span>
-     <input type="text" class="form-control" placeholder="userName" aria-describedby="sizing-addon1" name="adminName"/>
-    </div>
-    <div class="input-group input-group-lg" id="input">
-     <span class="input-group-addon" id="sizing-addon1">密     码</span>
-     <input type="text" class="form-control" placeholder="password" aria-describedby="sizing-addon1" name="password"/>
-    </div>
-    <div class="btn-group" role="group" aria-label="..." id="button">
-    <button type="submit" class="btn btn-default">登录</button>
-    <span id="error" th:text="${error}"></span>
-    </div>
-    </form>
-  </div>
+ <div id="div1">
+ <input class="easyui-passwordbox" prompt="Password" iconWidth="28" style="width:100%;height:34px;padding:10px"/> 
+ <input  prompt="Password" iconWidth="28" style="width:100%;height:34px;padding:10px"/> 
+ </div>
 </body>
 </html>

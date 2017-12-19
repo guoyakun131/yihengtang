@@ -2,17 +2,28 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>首页</title>
-	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0" />
-	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"></link>
-	<script type="text/javascript" src="/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
-	<style type="text/css">
-	 body{
-	  background: url("../adminImg/baner.jpg");
-	 }
-	</style>
+<meta name="viewport"
+	content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"></link>
+<script type="text/javascript" src="/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="../css/home.css"></link>
 </head>
 <body>
-  <p th:text="${admin}"></p>
+	<div class="div1">
+		<ul class="nav nav-pills">
+			<li role="presentation" class="dropdown">
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+		      <span th:text="${admin}" ></span>
+		     <span class="caret"></span>
+			</a>
+			<ul class="dropdown-menu">
+			<li><a href="">修改密码</a></li>
+            <li><a href="/admin/logout">退出</a></li>
+			</ul>
+		</li>
+	</ul>
+</div>
 </body>
 </html>
+
