@@ -12,6 +12,7 @@ import com.yihengtang.yihengtang.dao.ExpertsMapper;
 import com.yihengtang.yihengtang.dao.UserMapper;
 import com.yihengtang.yihengtang.entity.Experts;
 import com.yihengtang.yihengtang.entity.Reservation;
+import com.yihengtang.yihengtang.entity.User;
 
 @Service
 public class UserService {
@@ -21,6 +22,14 @@ public class UserService {
 	
 	@Autowired
 	private ExpertsMapper expertsMapper;
+	
+	/**
+	 * 查询所有用户信息
+	 * @return
+	 */
+	public List<User> userList(){
+		return userMppaer.userList();
+	}
 	
 	/**
 	 * 查询openid

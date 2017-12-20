@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<meta name="renderer" content="webkit|ie-comp|ie-stand"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<LINK rel="Bookmark" href="/favicon.ico" />
+<LINK rel="Shortcut Icon" href="/favicon.ico" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="http://47.95.123.57/ds/static/hui/lib/html5.js"></script>
+<script type="text/javascript" src="http://47.95.123.57/ds/static/hui/lib/respond.min.js"></script>
+<script type="text/javascript" src="http://47.95.123.57/ds/static/hui/lib/PIE_IE678.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="../H-ui/static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="../H-ui/static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="../H-ui/lib/Hui-iconfont/1.0.8/iconfont.css" />
+<!--  <link rel="stylesheet" type="text/css" href="../H-ui/lib/icheck/icheck.css" />-->
+<link rel="stylesheet" type="text/css" href="../H-ui/static/h-ui.admin/skin/orange/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="../H-ui/static/h-ui.admin/css/style.css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<!--/meta 作为公共模版分离出去-->
+
+<script type="text/javascript" src="../H-ui/lib/jquery/1.9.1/jquery.min.js"></script>
+<title>用户列表</title>
+<style>
+    .page {text-align: center;margin-top: 15px;}
+	.page a {padding-right:10px;padding-left: 10px;border: 1px solid #ccc;text-align: center; font-size: 22px; margin: 0 2px 0 2px}
+	.page strong {padding-right:10px;padding-left: 10px; border: 1px solid #ccc; background: #5a98de; color: #fff; font-size: 22px; margin: 0 2px 0 2px}
+</style>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 用户管理 <span class="c-gray en">&gt;</span> 用户列表<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
+	<div class="text-c">
+		<form action="" method="get">
+			<input type="text" name="keyword" placeholder="昵称" style="width:250px" class="input-text" value=""/>
+			<button class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i>搜索</button>
+		</form>
+	</div>
+	<div class="mt-20">
+		<table class="table table-border table-bordered table-bg table-hover table-sort">
+			<thead>
+				<tr class="text-c">
+					<th width='40'>id</th>
+					<th width='100'>昵称</th>
+					<th width="80">头像</th>
+					<th width='80'>创建时间</th>
+					<th width='80'>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="text-c" th:each="user:${userList}">
+					<td th:text="${user.id}"></td>
+					<td th:text="${user.nick_Name}"></td>
+					<td th:text="${user.avatra}"></td>
+					<td th:text="${user.add_Time}"></td>
+					<td class="f-14 td-manage">
+						<a style="text-decoration:none" class="ml-5" onClick=""><i class="Hui-iconfont">&#xe631;</i></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="page">
+			<?php echo $pages; ?>
+		</div>
+	</div>
+</div>
+
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="../H-ui/lib/layer/2.4/layer.js"></script>
+<!-- 
+<script type="text/javascript" src="../H-ui/lib/icheck/jquery.icheck.min.js"></script>
+ -->
+<script type="text/javascript" src="../H-ui/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="../H-ui/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="../H-ui/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script type="text/javascript" src="../H-ui/static/h-ui/js/H-ui.js"></script>
+<script type="text/javascript" src="../H-ui/static/h-ui.admin/js/H-ui.admin.js"></script>
+<!--/_footer /作为公共模版分离出去-->
+
+</body>
+</html>

@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Update;
 
 import com.google.gson.JsonObject;
 import com.yihengtang.yihengtang.entity.Reservation;
+import com.yihengtang.yihengtang.entity.User;
 
 @Mapper
 public interface UserMapper {
@@ -17,9 +18,18 @@ public interface UserMapper {
 	@Select("select COUNT(*) from user where openid = #{openid}")
 	int selectOpenid(String openid);
 
+	/**
+	 * 添加用户
+	 * @param openid
+	 * @param session
+	 * @param openidAndSessionKey
+	 * @param nick_name
+	 * @param avatra
+	 * @return
+	 */
 	@Insert("insert into user (openid,session, openiAndsessionKey) values(#{openid},#{session}, #{openidAndSessionKey})")
 	int add(@Param("openid") String openid, @Param("session") String session,
-			@Param("openidAndSessionKey") String openidAndSessionKey);
+			@Param("openidAndSessionKey") String openidAndSessionKey,String nick_name,String avatra);
 
 	@Update("UPDATE user SET session = #{rsession_key}, openiAndsessionKey = #{openidAndSessionKey} WHERE openid = #{openid}")
 	int updata(@Param("openid") String openid, @Param("rsession_key") String rsession_key,
@@ -146,5 +156,12 @@ public interface UserMapper {
 	 */
 	@Select("SELECT message from notification WHERE u_id = #{u_id}")
 	List<String> message(int u_id);
+	
+	/**
+	 * 查询所有用户
+	 * @return
+	 */
+	@Select("SELECT * from user")
+	List<User> userList();
 	
 }
