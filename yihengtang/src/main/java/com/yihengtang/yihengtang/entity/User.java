@@ -1,12 +1,50 @@
 package com.yihengtang.yihengtang.entity;
 
+import java.util.Date;
+
 public class User {
+	private int id;
+	private String nick_Name;
+	private String avatra;
+	private String add_Time;
 	private String openid;
 	private String session_key;
 	private String expires_in;
 	private String notification;
 	private String reservation;
 	
+	public int getId() {
+		return id;
+	}
+	
+	
+	public String getNick_Name() {
+		return nick_Name;
+	}
+
+	public void setNick_Name(String nick_Name) {
+		this.nick_Name = nick_Name;
+	}
+
+	public String getAvatra() {
+		return avatra;
+	}
+
+	public void setAvatra(String avatra) {
+		this.avatra = avatra;
+	}
+
+	public String getAdd_Time() {
+		return add_Time;
+	}
+
+	public void setAdd_Time(String add_Time) {
+		this.add_Time = add_Time;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getOpenid() {
 		return openid;
 	}

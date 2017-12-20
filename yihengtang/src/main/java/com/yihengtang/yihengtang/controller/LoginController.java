@@ -2,6 +2,8 @@ package com.yihengtang.yihengtang.controller;
 
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,8 +21,10 @@ public class LoginController {
 	private UserMapper userMapper;
 
 	@RequestMapping("/login")
-	public String login(String code) {
-
+	public String login(HttpServletRequest request) {
+    String code = request.getParameter("code");
+    String nick_Name = request.getParameter("nick_name");
+    String avatra = request.getParameter("avatra");
 		if (code != null && !"".equals(code)) {
 			String url = "https://api.weixin.qq.com/sns/jscode2session";
 			String appId = "wx0d0edc31204549b9";
@@ -41,7 +45,8 @@ public class LoginController {
 				if (userMapper.selectOpenid(openid) == 1) {
 					userMapper.updata(openid, rsession_key, openidAndSessionKey_value);
 				} else {
-					userMapper.add(openid, rsession_key, openidAndSessionKey_value);
+					//添加用户
+					userMapper.add(openid, rsession_key, openidAndSessionKey_value,nick_Name,avatra);
 				}
 				JsonObject object = new JsonObject();
 				object.addProperty("session_key", rsession_key);
