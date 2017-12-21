@@ -11,11 +11,27 @@
  Target Server Version : 50717
  File Encoding         : 65001
 
- Date: 13/12/2017 17:54:28
+ Date: 21/12/2017 17:55:42
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for admin
+-- ----------------------------
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE `admin`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `adminName` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of admin
+-- ----------------------------
+INSERT INTO `admin` VALUES (1, '刘备', '131310');
 
 -- ----------------------------
 -- Table structure for articles
@@ -24,7 +40,7 @@ DROP TABLE IF EXISTS `articles`;
 CREATE TABLE `articles`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `details` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '标题',
-  `time` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '文章发布时间',
+  `time` datetime(0) DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '文章发布时间',
   `fabulousInt` int(255) DEFAULT NULL COMMENT '点赞数量',
   `browseInt` int(11) DEFAULT NULL COMMENT '浏览数据量',
   `img` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '图片地址',
@@ -37,15 +53,15 @@ CREATE TABLE `articles`  (
 -- ----------------------------
 -- Records of articles
 -- ----------------------------
-INSERT INTO `articles` VALUES (1, '专家提示刚烧开的水不能引用', '2017-11-24', 11, 23, 'https://liangyi120.xin/images/yisheng1.jpg', '1', '假数据假数据假数据假数据假 <image src=\'{{img}}\'></image>数据假数据假数据假数据假数据假数据假数据假数据假数据', '刘备');
-INSERT INTO `articles` VALUES (2, '多喝水睡眠足', '2017-11-24', 113, 225, 'https://liangyi120.xin/images/yisheng2.jpg', '1', '假数据假数据假数据假数据假数据假数据s', '张飞');
-INSERT INTO `articles` VALUES (3, '每天坚持跑步', '2017-11-24', 11, 21, 'https://liangyi120.xin/images/yisheng3.jpg', '2', '假数据假数据假数据假数据假数据假数据假数据', '关于');
-INSERT INTO `articles` VALUES (4, '适当运动', '2017-11-24', 11, 29, 'https://liangyi120.xin/images/yisheng4.jpg', '2', '假数据假数据假数据假数据假数据假数据假数据', NULL);
-INSERT INTO `articles` VALUES (6, '饭后', '2017-11-24', 112, 28, 'https://liangyi120.xin/images/yisheng5.jpg', '3', '假数据假数据假数据假数据假数据假数据', NULL);
-INSERT INTO `articles` VALUES (7, '专家提示刚烧开的水不能引用', '2017-11-24', 123, 22, 'https://liangyi120.xin/images/yisheng6.jpg', '3', '假数据假数据假数据假数据', NULL);
-INSERT INTO `articles` VALUES (8, '专家提示刚烧开的水不能引用', '2017-11-24', 43, 221, 'https://liangyi120.xin/images/yisheng7.jpg', '4', '假数据假数据', NULL);
-INSERT INTO `articles` VALUES (9, '专家提示刚烧开的水不能引用', '2017-11-24', 14, 422, 'https://liangyi120.xin/images/yisheng8.jpg', '4', NULL, NULL);
-INSERT INTO `articles` VALUES (10, '专家提示刚烧开的水不能引用', '2017-11-24', 18, 20, 'https://liangyi120.xin/images/yisheng9.jpg', '5', NULL, NULL);
+INSERT INTO `articles` VALUES (1, '专家提示刚烧开的水不能引用', '2017-12-21 13:40:10', 11, 23, 'https://liangyi120.xin/images/yisheng1.jpg', '1', '假数据假数据假数据假数据假 <image src=\'{{img}}\'></image>数据假数据假数据假数据假数据假数据假数据假数据假数据', '刘备');
+INSERT INTO `articles` VALUES (2, '多喝水睡眠足', '2017-12-21 13:40:14', 113, 225, 'https://liangyi120.xin/images/yisheng2.jpg', '1', '假数据假数据假数据假数据假数据假数据s', '张飞');
+INSERT INTO `articles` VALUES (3, '每天坚持跑步', NULL, 11, 21, 'https://liangyi120.xin/images/yisheng3.jpg', '2', '假数据假数据假数据假数据假数据假数据假数据', '关于');
+INSERT INTO `articles` VALUES (4, '适当运动', NULL, 11, 29, 'https://liangyi120.xin/images/yisheng4.jpg', '2', '假数据假数据假数据假数据假数据假数据假数据', NULL);
+INSERT INTO `articles` VALUES (6, '饭后', NULL, 112, 28, 'https://liangyi120.xin/images/yisheng5.jpg', '3', '假数据假数据假数据假数据假数据假数据', NULL);
+INSERT INTO `articles` VALUES (7, '专家提示刚烧开的水不能引用', NULL, 123, 22, 'https://liangyi120.xin/images/yisheng6.jpg', '3', '假数据假数据假数据假数据', NULL);
+INSERT INTO `articles` VALUES (8, '专家提示刚烧开的水不能引用', NULL, 43, 221, 'https://liangyi120.xin/images/yisheng7.jpg', '4', '假数据假数据', NULL);
+INSERT INTO `articles` VALUES (9, '专家提示刚烧开的水不能引用', NULL, 14, 422, 'https://liangyi120.xin/images/yisheng8.jpg', '4', NULL, NULL);
+INSERT INTO `articles` VALUES (10, '专家提示刚烧开的水不能引用', NULL, 18, 20, 'https://liangyi120.xin/images/yisheng9.jpg', '5', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for department
@@ -171,6 +187,9 @@ INSERT INTO `reservation` VALUES (3, 2, 1, 0, NULL);
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `avatar` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `nick_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `add_time` datetime(0) DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
   `openid` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `session` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `openiAndsessionKey` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
@@ -178,13 +197,13 @@ CREATE TABLE `user`  (
   `notification_id` int(11) DEFAULT NULL,
   `phoneNumber` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '用户手机号',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 'on0sC0e3BtYMER4dOJGMMjIz7-Fg', '2102b180-89d2-4197-9bb2-c510965da53c', 'on0sC0e3BtYMER4dOJGMMjIz7-FgagyeyyvzgwlOLEwktwKCIw==', 1, 1, '');
-INSERT INTO `user` VALUES (2, '1212', NULL, NULL, 2, NULL, NULL);
-INSERT INTO `user` VALUES (3, 'on0sC0QtEU4y1Ejg4evU-xcI8dBQ', 'c96307f4-7df1-438b-9706-3f5b001b5b71', 'on0sC0QtEU4y1Ejg4evU-xcI8dBQxIcFRtDgSbXFY9f+xpKGUQ==', NULL, NULL, NULL);
+INSERT INTO `user` VALUES (1, 'https://wx.qlogo.cn/mmopen/vi_32/PiajxSqBRaEKmPYSpEgwabMYZFJ0mGjmiaGdHZlQ2Lky7AkITBZmYjcUxkExcyadHmZWiclAJ8PVgJZHGfhNTsd0A/0', '^o^', '2017-12-21 10:58:21', 'on0sC0e3BtYMER4dOJGMMjIz7-F', 'dfb9f98f-fa6d-4950-b508-4e5d89c70030', 'on0sC0e3BtYMER4dOJGMMjIz7-Fg4rPik1LtkxKh8u2pFs3v2g==', 1, 1, '');
+INSERT INTO `user` VALUES (2, NULL, NULL, NULL, '1212', NULL, NULL, 2, NULL, NULL);
+INSERT INTO `user` VALUES (7, 'https://wx.qlogo.cn/mmopen/vi_32/PiajxSqBRaEKmPYSpEgwabMYZFJ0mGjmiaGdHZlQ2Lky7AkITBZmYjcUxkExcyadHmZWiclAJ8PVgJZHGfhNTsd0A/0', '^o^', '2017-12-21 13:40:25', 'on0sC0e3BtYMER4dOJGMMjIz7-Fg', '6487c962-e923-4dc6-9feb-d79e41e219d1', 'on0sC0e3BtYMER4dOJGMMjIz7-Fgq53hwl0vF/CvD4vL8MnoNQ==', NULL, NULL, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;

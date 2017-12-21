@@ -23,6 +23,10 @@ public class UserService {
 	@Autowired
 	private ExpertsMapper expertsMapper;
 	
+	public void addUser(String session,String nickName, String avatar){
+	      userMppaer.addUser(session,nickName,avatar);
+	}
+	
 	/**
 	 * 查询所有用户信息
 	 * @return

@@ -5,7 +5,7 @@ import java.util.Date;
 public class User {
 	private int id;
 	private String nick_Name;
-	private String avatra;
+	private String avatar;
 	private String add_Time;
 	private String openid;
 	private String session_key;
@@ -26,13 +26,15 @@ public class User {
 		this.nick_Name = nick_Name;
 	}
 
-	public String getAvatra() {
-		return avatra;
+
+	public String getAvatar() {
+		return avatar;
 	}
 
-	public void setAvatra(String avatra) {
-		this.avatra = avatra;
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
+
 
 	public String getAdd_Time() {
 		return add_Time;

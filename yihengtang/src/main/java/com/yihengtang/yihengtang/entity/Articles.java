@@ -33,7 +33,7 @@ public class Articles {
 			/**
 			 * 浏览数据量
 			 */
-	private int  browseInt ;
+	private int  browseInt;
 			/**
 			 * 图片地址
 			 */
@@ -45,7 +45,6 @@ public class Articles {
     private String type;
     
     private String text;
-    
     
 	public int getId() {
 		return id;

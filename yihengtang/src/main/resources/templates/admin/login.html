@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE HTML>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8"/>
 <meta name="renderer" content="webkit|ie-comp|ie-stand"/>
@@ -47,8 +47,10 @@
         <div class="formControls col-xs-8 col-xs-offset-3">
           <input name="" type="submit" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;"/>
           <input name="" type="reset" class="btn btn-default radius size-L" value="&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;"/>
+        <span th:text="${error}" style="color:#F00"></span>
         </div>
       </div>
+      
     </form>
   </div>
 </div>

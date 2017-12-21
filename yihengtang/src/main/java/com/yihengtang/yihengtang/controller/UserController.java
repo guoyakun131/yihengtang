@@ -4,12 +4,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.aliyuncs.exceptions.ClientException;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.yihengtang.yihengtang.entity.Reservation;
 import com.yihengtang.yihengtang.service.ExpertsService;
 import com.yihengtang.yihengtang.service.UserService;
@@ -43,8 +47,8 @@ public class UserController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		String openid = userService.openid(session);
 		map.put("about", userService.reservationNumber(openid));
-
-		if (userService.phoneNumber(openid).length() != 0) {
+	String phoneNumber =  userService.phoneNumber(openid);
+		if (phoneNumber != null && phoneNumber.length() != 0) {
 			map.put("binding", "已绑定");
 		} else {
 			map.put("binding", "未绑定");
@@ -140,5 +144,16 @@ public class UserController {
 	@RequestMapping("/message")
 	public List<String> message(String session) {
 		return  userService.message(userService.userId(userService.openid(session)));
+	}
+	
+	@RequestMapping("/addUser")
+	public void addUser(HttpServletRequest request) {
+		String session = request.getParameter("session");
+		String user = request.getParameter("user");
+		JsonObject obj = new JsonParser().parse(user).getAsJsonObject();
+		String nickName = obj.get("nickName").getAsString();
+		String avatar = obj.get("avatar").getAsString();
+		System.out.println(nickName+avatar);
+		userService.addUser(session,nickName,avatar);
 	}
 }

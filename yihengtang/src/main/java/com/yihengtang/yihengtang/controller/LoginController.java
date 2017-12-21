@@ -23,7 +23,7 @@ public class LoginController {
 	@RequestMapping("/login")
 	public String login(HttpServletRequest request) {
     String code = request.getParameter("code");
-    String nick_Name = request.getParameter("nick_name");
+    String nick_Name = request.getParameter("user");
     String avatra = request.getParameter("avatra");
 		if (code != null && !"".equals(code)) {
 			String url = "https://api.weixin.qq.com/sns/jscode2session";
@@ -46,7 +46,7 @@ public class LoginController {
 					userMapper.updata(openid, rsession_key, openidAndSessionKey_value);
 				} else {
 					//添加用户
-					userMapper.add(openid, rsession_key, openidAndSessionKey_value,nick_Name,avatra);
+					userMapper.add(openid, rsession_key, openidAndSessionKey_value);
 				}
 				JsonObject object = new JsonObject();
 				object.addProperty("session_key", rsession_key);
