@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.yihengtang.yihengtang.dao.ArticlesMapper;
 import com.yihengtang.yihengtang.entity.Admin;
+import com.yihengtang.yihengtang.entity.Articles;
 import com.yihengtang.yihengtang.entity.User;
 import com.yihengtang.yihengtang.service.AdminService;
 import com.yihengtang.yihengtang.service.UserService;
@@ -32,6 +34,9 @@ public class AdminController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private ArticlesMapper articlesMapper;
 	/**
 	 * 返回管理員登陸頁面
 	 * @return
@@ -91,9 +96,20 @@ public class AdminController {
 	 */
 	@RequestMapping("/user-list")
 	public  String userList(Model model) {
-		System.out.println("ajax其你去");
 		List<User> userList =  userService.userList();
 		model.addAttribute("userList", userList);
 		return "admin/user-list";
+	}	
+	
+	/**
+	 * 图文上传
+	 * @return
+	 */
+	@RequestMapping("/picture")
+	public String picture(Model model) {
+		List<Articles> articlesList =  articlesMapper.articlesList();
+		model.addAttribute("articlesList", articlesList);
+		model.addAttribute("articlesSize", articlesList.size());
+		return "admin/picture";
 	}	
 }

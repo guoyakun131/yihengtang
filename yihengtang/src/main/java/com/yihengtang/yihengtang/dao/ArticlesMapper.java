@@ -17,6 +17,9 @@ import com.yihengtang.yihengtang.entity.Articles;
 @Mapper
 public interface ArticlesMapper {
 	
+	@Select("select id,details,type,author,time,browseInt from articles")
+	List<Articles> articlesList();
+	
 	/**
 	 * 按Id查询文章信息
 	 * @param id

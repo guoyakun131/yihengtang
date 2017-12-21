@@ -14,6 +14,9 @@ import com.yihengtang.yihengtang.entity.User;
 
 @Mapper
 public interface UserMapper {
+	
+	@Update("UPDATE user SET avatar = #{avatar}, nick_name = #{nick_name} WHERE session = #{session}")
+	void addUser(@Param("session")String session,@Param("nick_name")String nick_name,@Param("avatar")String avatar);
 
 	@Select("select COUNT(*) from user where openid = #{openid}")
 	int selectOpenid(String openid);
@@ -29,7 +32,7 @@ public interface UserMapper {
 	 */
 	@Insert("insert into user (openid,session, openiAndsessionKey) values(#{openid},#{session}, #{openidAndSessionKey})")
 	int add(@Param("openid") String openid, @Param("session") String session,
-			@Param("openidAndSessionKey") String openidAndSessionKey,String nick_name,String avatra);
+			@Param("openidAndSessionKey") String openidAndSessionKey);
 
 	@Update("UPDATE user SET session = #{rsession_key}, openiAndsessionKey = #{openidAndSessionKey} WHERE openid = #{openid}")
 	int updata(@Param("openid") String openid, @Param("rsession_key") String rsession_key,
@@ -161,7 +164,7 @@ public interface UserMapper {
 	 * 查询所有用户
 	 * @return
 	 */
-	@Select("SELECT * from user")
+	@Select("SELECT id,nick_name,avatar,add_time from user")
 	List<User> userList();
 	
 }
