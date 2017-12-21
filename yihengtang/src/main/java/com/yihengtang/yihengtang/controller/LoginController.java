@@ -24,7 +24,8 @@ public class LoginController {
 	public String login(HttpServletRequest request) {
     String code = request.getParameter("code");
     String nick_Name = request.getParameter("nick_name");
-    String avatra = request.getParameter("avatra");
+    String avatra = request.getParameter("avatar");
+    System.out.println("头像和昵称"+nick_Name+avatra);
 		if (code != null && !"".equals(code)) {
 			String url = "https://api.weixin.qq.com/sns/jscode2session";
 			String appId = "wx0d0edc31204549b9";

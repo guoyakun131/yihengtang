@@ -44,7 +44,7 @@ public class UserController {
 		String openid = userService.openid(session);
 		map.put("about", userService.reservationNumber(openid));
 
-		if (userService.phoneNumber(openid).length() != 0) {
+		if (userService.phoneNumber(openid) != null && userService.phoneNumber(openid).length() != 0) {
 			map.put("binding", "已绑定");
 		} else {
 			map.put("binding", "未绑定");
