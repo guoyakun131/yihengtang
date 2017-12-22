@@ -56,4 +56,13 @@ public class HomeController {
 	public void read(int id) {
 		homeServce.read(id);
 	}
+	
+	/**
+	 * 首页轮播图
+	 * @param id
+	 */
+	@RequestMapping("/imgUrl")
+	public List<String> imgUrl() {
+		return homeServce.imgUrl();
+	}
 }

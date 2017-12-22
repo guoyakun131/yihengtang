@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.yihengtang.yihengtang.dao.AdminMapper;
 import com.yihengtang.yihengtang.dao.ArticlesMapper;
 import com.yihengtang.yihengtang.entity.Articles;
 
@@ -14,6 +15,9 @@ public class HomeService {
 
 	@Autowired
 	private ArticlesMapper wenZhangMapper;
+	
+	@Autowired
+	private AdminMapper adminMapper;
 	
 	/**
 	 * 查询文章信息
@@ -29,5 +33,9 @@ public class HomeService {
 	 */
 	public void read(int id) {
 		wenZhangMapper.read(id);
+	}
+	
+	public List<String> imgUrl() {
+		return adminMapper.imgUrl();
 	}
 }
