@@ -102,7 +102,7 @@ public class AdminController {
 	}	
 	
 	/**
-	 * 图文上传
+	 * 图文列表
 	 * @return
 	 */
 	@RequestMapping("/picture")
@@ -111,5 +111,17 @@ public class AdminController {
 		model.addAttribute("articlesList", articlesList);
 		model.addAttribute("articlesSize", articlesList.size());
 		return "admin/picture";
+	}	
+	
+	
+	@RequestMapping("/delete")
+	@ResponseBody
+	public void picture(HttpServletRequest request,Model model) {
+		String id = request.getParameter("id");
+		System.out.println(id);
+		 if(articlesMapper.delete(Integer.valueOf(id)) != 1) {
+			 model.addAttribute("msg","失败");
+		 }
+		 model.addAttribute("msg","成功");
 	}	
 }

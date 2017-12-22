@@ -2,6 +2,7 @@ package com.yihengtang.yihengtang.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -16,6 +17,13 @@ import com.yihengtang.yihengtang.entity.Articles;
  */
 @Mapper
 public interface ArticlesMapper {
+	/**
+	 * 按ID删除文章
+	 * @param id
+	 * @return
+	 */
+	@Delete("delete from articles where id=#{id}")  
+	int delete(int id);
 	
 	@Select("select id,details,type,author,time,browseInt from articles")
 	List<Articles> articlesList();
