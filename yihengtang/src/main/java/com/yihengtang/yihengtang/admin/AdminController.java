@@ -1,21 +1,31 @@
 package com.yihengtang.yihengtang.admin;
 
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.codehaus.groovy.transform.SynchronizedASTTransformation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yihengtang.yihengtang.dao.ArticlesMapper;
+import com.yihengtang.yihengtang.dao.ImgMapper;
 import com.yihengtang.yihengtang.entity.Admin;
 import com.yihengtang.yihengtang.entity.Articles;
 import com.yihengtang.yihengtang.entity.Img;
@@ -40,6 +50,9 @@ public class AdminController {
 	
 	@Autowired
 	private ArticlesMapper articlesMapper;
+	
+	@Autowired
+	private  ImgMapper imgMapper;
 	/**
 	 * 返回管理員登陸頁面
 	 * @return
@@ -144,9 +157,61 @@ public class AdminController {
 		return "admin/picture-list";
 	}
 	
+	@RequestMapping("/imgState")
+	@ResponseBody
+	public String imgState(HttpServletRequest request) {
+		String id = request.getParameter("id");
+		String state = request.getParameter("state");
+		System.out.println(id);
+		 if(imgMapper.imgState(Integer.valueOf(state), Integer.valueOf(id)) != 1) {
+			 return "失败";
+		 }
+		 return "成功";
+	}
+	
+	@RequestMapping( value = "/upload", method = RequestMethod.POST)
+	@ResponseBody
+	public String upload(@RequestParam("file") MultipartFile file) {
+		if (!file.isEmpty()) {
+            try {
+            	 // 上传到指定目录
+            	  // file.transferTo(dest);
+            	System.out.println(file.getOriginalFilename());
+            	String img ="D:\\eclipse-workspace\\yihengtang\\yihengtang\\src\\main\\webapp\\"+file.getOriginalFilename();
+                String imgUrl = "https://liangyi120.xin/"+file.getOriginalFilename();
+                imgMapper.addUrl(imgUrl);
+            	BufferedOutputStream out = new BufferedOutputStream(
+                        new FileOutputStream(new File(img)));
+                out.write(file.getBytes());
+                out.flush();
+                out.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                return "上传失败," + e.getMessage();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return "上传失败," + e.getMessage();
+            }
+            return "上传成功";
+        } else {
+            return "上传失败，因为文件是空的.";
+        }
+	}
+	
 	@RequestMapping("/experts")
 	public String experts(Model model) {
 		
+		return "admin/experts";
+	}
+	
+	@RequestMapping("/imgDelete")
+	public String imgDelete(Integer id) {
+		System.out.println(id);
+		
+		
+		if(imgMapper.imgDelete(id) = 1) {
+			return "失敗"
+		}
 		return "admin/experts";
 	}
 }
