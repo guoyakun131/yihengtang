@@ -100,13 +100,13 @@ function article_del(obj,id){
 			type: 'POST',
 			url: '/admin/delete',
 			data:{"id":id},
-			dataType: 'json',
+			dataType: 'text',
 			success: function(data){
 				$(obj).parents("tr").remove();
 				layer.msg('已删除!',{icon:1,time:1000});
 			},
 			error:function(data) {
-				console.log(data.msg);
+				console.log(data);
 			},
 		});		
 	});

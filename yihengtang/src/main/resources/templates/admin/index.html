@@ -35,8 +35,8 @@
 				<li class="dropDown dropDown_hover">
 					<a href="#" class="dropDown_A" ><span th:text="${admin}"></span><i class="Hui-iconfont">&#xe6d5;</i></a>
 					<ul class="dropDown-menu menu radius box-shadow">
-						<li><a href="javascript:;" onClick="myselfinfo()">个人信息</a></li>
-						<li><a href="#">退出</a></li>
+						<li><a href="javascript:;" onClick="myselfinfo()">修改密码</a></li>
+						<li><a href="/admin/logout">退出</a></li>
 				</ul>
 			</li>
 			</ul>
@@ -59,7 +59,7 @@
 			<dt><i class="Hui-iconfont">&#xe62d;</i> 医师管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="admin-list.html" data-title="医师列表" href="javascript:void(0)">医师列表</a></li>
+					<li><a data-href="/admin/experts" data-title="医师列表" href="javascript:void(0)">医师列表</a></li>
 			</ul>
 		</dd>
 	</dl>
@@ -71,7 +71,7 @@
 					<li><a data-href="/admin/picture" data-title="图文上传" href="javascript:void(0)">图文上传</a></li>
 			</ul>
 				<ul>
-					<li><a data-href="pictures-list.html" data-title="轮播图" href="javascript:void(0)">轮播图</a></li>
+					<li><a data-href="/admin/pictures-list" data-title="轮播图" href="javascript:void(0)">轮播图</a></li>
 			</ul>
 		</dd>
 		

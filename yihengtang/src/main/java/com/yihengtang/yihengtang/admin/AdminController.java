@@ -1,7 +1,9 @@
 package com.yihengtang.yihengtang.admin;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.yihengtang.yihengtang.dao.ArticlesMapper;
 import com.yihengtang.yihengtang.entity.Admin;
 import com.yihengtang.yihengtang.entity.Articles;
+import com.yihengtang.yihengtang.entity.Img;
 import com.yihengtang.yihengtang.entity.User;
 import com.yihengtang.yihengtang.service.AdminService;
 import com.yihengtang.yihengtang.service.UserService;
@@ -116,12 +119,34 @@ public class AdminController {
 	
 	@RequestMapping("/delete")
 	@ResponseBody
-	public void picture(HttpServletRequest request,Model model) {
+	public String picture(HttpServletRequest request) {
 		String id = request.getParameter("id");
 		System.out.println(id);
+		 //Map<String,String> map = new HashMap<String, String>();
 		 if(articlesMapper.delete(Integer.valueOf(id)) != 1) {
-			 model.addAttribute("msg","失败");
+			 //return map.put("data", "失败");
+			 return "失败";
 		 }
-		 model.addAttribute("msg","成功");
-	}	
+		 //return map.put("data", "失败");
+		 return "成功";
+	}
+	
+	/**
+	 *轮播图
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/pictures-list")
+	public String picturesList(Model model) {
+		List<Img> img = adminService.img();
+		model.addAttribute("imgList", img);
+		model.addAttribute("imgSize", img.size());
+		return "admin/picture-list";
+	}
+	
+	@RequestMapping("/experts")
+	public String experts(Model model) {
+		
+		return "admin/experts";
+	}
 }
