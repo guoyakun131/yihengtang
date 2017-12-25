@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yihengtang.yihengtang.dao.ArticlesMapper;
+import com.yihengtang.yihengtang.dao.ExpertsMapper;
 import com.yihengtang.yihengtang.dao.ImgMapper;
 import com.yihengtang.yihengtang.entity.Admin;
 import com.yihengtang.yihengtang.entity.Articles;
@@ -53,6 +54,9 @@ public class AdminController {
 	
 	@Autowired
 	private  ImgMapper imgMapper;
+	
+	@Autowired
+	private  ExpertsMapper expertsMapper;
 	/**
 	 * 返回管理員登陸頁面
 	 * @return
@@ -198,12 +202,22 @@ public class AdminController {
         }
 	}
 	
+	/**
+	 * 医师列表
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/experts")
 	public String experts(Model model) {
-		
+		model.addAttribute("expertsList",expertsMapper.adminFindAll());
+		model.addAttribute("expertsSize",expertsMapper.adminFindAll().size());
 		return "admin/experts";
 	}
-	
+	/**
+	 * 轮播图上传
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "/imgDelete", method = RequestMethod.POST)
 	@ResponseBody
 	public String imgDelete(Integer id) {
@@ -213,4 +227,78 @@ public class AdminController {
 		}
 		return "成功";
 	}
+	
+	/**
+	 * 图文添加
+	 * @param file
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/artucleAdd", method = RequestMethod.POST)
+	@ResponseBody
+	public String artucleAdd(@RequestParam("file") MultipartFile file,HttpServletRequest request) {//@RequestParam("articletitle") String articletitle,
+			//@RequestParam("articletype")String articletype,@RequestParam("author")String author,
+			//@RequestParam("editor")String editor) {
+		String articletitle = request.getParameter("articletitle");
+		String articletype = request.getParameter("articletype");
+		String author = request.getParameter("author");
+		String editor = request.getParameter("editor");
+		String imgUrl = null;
+		if (!file.isEmpty()) {
+            try {
+            	 // 上传到指定目录
+            	  // file.transferTo(dest);
+            	System.out.println(file.getOriginalFilename());
+            	String img ="D:\\eclipse-workspace\\yihengtang\\yihengtang\\src\\main\\webapp\\"+file.getOriginalFilename();
+            	imgUrl = "https://liangyi120.xin/"+file.getOriginalFilename();
+                //imgMapper.addUrl(imgUrl);
+            	BufferedOutputStream out = new BufferedOutputStream(
+                        new FileOutputStream(new File(img)));
+                out.write(file.getBytes());
+                out.flush();
+                out.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                return "上传失败," + e.getMessage();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return "上传失败," + e.getMessage();
+            }
+            articlesMapper.addArticles(articletitle, imgUrl,Integer.valueOf(articletype), editor, author);
+            return "上传成功";
+        } else {
+            return "上传失败，因为文件是空的.";
+        }
+	}
+	
+	
+//	@RequestMapping(value = "/imgUpload", method = RequestMethod.POST)
+//	@ResponseBody
+//	public String imgUpload(@RequestParam("file") MultipartFile file) {
+//		String imgUrl = null;
+//		if (!file.isEmpty()) {
+//            try {
+//            	 // 上传到指定目录
+//            	  // file.transferTo(dest);
+//            	System.out.println(file.getOriginalFilename());
+//            	String img ="D:\\eclipse-workspace\\yihengtang\\yihengtang\\src\\main\\webapp\\"+file.getOriginalFilename();
+//                imgUrl = "https://liangyi120.xin/"+file.getOriginalFilename();
+//                imgMapper.addUrl(imgUrl);
+//            	BufferedOutputStream out = new BufferedOutputStream(
+//                        new FileOutputStream(new File(img)));
+//                out.write(file.getBytes());
+//                out.flush();
+//                out.close();
+//            } catch (FileNotFoundException e) {
+//                e.printStackTrace();
+//                return "上传失败," + e.getMessage();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//                return "上传失败," + e.getMessage();
+//            }
+//            return imgUrl;
+//        } else {
+//            return "上传失败，因为文件是空的.";
+//        }
+//	}
 }

@@ -3,7 +3,9 @@ package com.yihengtang.yihengtang.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -17,6 +19,16 @@ import com.yihengtang.yihengtang.entity.Articles;
  */
 @Mapper
 public interface ArticlesMapper {
+	/**
+	 * 添加图文
+	 * @param details
+	 * @param type
+	 * @param img
+	 * @param text
+	 * @param author
+	 */
+	@Insert("INSERT INTO articles (details,time,img,type,text,author) VALUES (#{details},NOW(),#{img},#{type},#{text},#{author})")
+	void addArticles(@Param("details")String details,@Param("img")String img,@Param("type")int type,@Param("text")String text,@Param("author")String author);
 	/**
 	 * 按ID删除文章
 	 * @param id

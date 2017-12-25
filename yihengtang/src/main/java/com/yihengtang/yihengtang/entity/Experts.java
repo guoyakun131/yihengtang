@@ -75,6 +75,10 @@ public class Experts {
 	 */
 	private int u_id;
 	
+	private String department;
+	
+	private String addTime;
+	
 	public Experts() {
 		super();
 	}
@@ -218,5 +222,22 @@ public class Experts {
 	public void setU_id(int u_id) {
 		this.u_id = u_id;
 	}
+
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
+	public String getAddTime() {
+		return addTime;
+	}
+
+	public void setAddTime(String addTime) {
+		this.addTime = addTime;
+	}
+	
 	
 }

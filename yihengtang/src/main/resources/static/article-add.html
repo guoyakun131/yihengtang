@@ -30,7 +30,7 @@
 </head>
 <body>
 <article class="page-container">
-	<form class="form form-horizontal" id="form-article-add">
+	<form class="form form-horizontal" id="form-article-add" action="admin/artucleAdd" method="POST" enctype="multipart/form-data">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>文章标题：</label>
 			<div class="formControls col-xs-8 col-sm-9">
@@ -43,12 +43,12 @@
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>文章类型：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
 				<select name="articletype" class="select">
-					<option value="0">1</option>
-					<option value="1">2</option>
-					<option value="2">3</option>
-					<option value="3">4</option>
-					<option value="4">5</option>
-					<option value="5">6</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
 				</select>
 				</span> </div>
 		</div>
@@ -66,7 +66,7 @@
 				<span class="btn-upload form-group">
 				<input class="input-text upload-url" type="text" name="video_img_url" id="uploadfile-2" readonly  datatype="*" nullmsg="请添加图片！" style="width:200px" value=""/>
 				<a href="javascript:void();" class="btn btn-primary upload-btn"><i class="Hui-iconfont">&#xe642;</i> 浏览文件</a>
-				<input type="file" name="video_img" class="input-file" multiple>
+				<input type="file" name="file" class="input-file" multiple/>
 				</span>
 			</div>
 		</div>
@@ -74,12 +74,12 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">文章内容：</label>
 			<div class="formControls col-xs-8 col-sm-9"> 
-				<script id="editor" type="text/plain" style="width:100%;height:400px;"></script> 
+				<script name="editor" id="editor" type="text/plain" style="width:100%;height:400px;"></script> 
 			</div>
 		</div>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-				<button onClick="article_save_submit();" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 提交</button>
+				<button class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 提交</button>
 				<button onClick="removeIframe();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 			</div>
 		</div>
@@ -106,7 +106,7 @@
     UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
     UE.Editor.prototype.getActionUrl = function(action) {
         if (action == 'uploadimage' || action == 'uploadscrawl' || action == 'uploadimage') {
-            return 'https://liangyi120.xin/imgUpdate'; //在这里返回我们实际的上传图片地址
+            return 'https://liangyi120.xin/admin/imgUpload'; //在这里返回我们实际的上传图片地址
         } else {
             return this._bkGetActionUrl.call(this, action);
         }
@@ -121,46 +121,46 @@ $(function(){
 		radioClass: 'iradio-blue',
 		increaseArea: '20%'
 	});
-	
+	/**
 	//表单验证
 	$("#form-article-add").validate({
 		rules:{
 			articletitle:{
 				required:true,
 			},
-			articletitle2:{
-				required:true,
-			},
-			articlecolumn:{
-				required:true,
-			},
+			//articletitle2:{
+			//	required:true,
+			//},
+			//articlecolumn:{
+			//	required:true,
+			//},
 			articletype:{
 				required:true,
 			},
-			articlesort:{
-				required:true,
-			},
-			keywords:{
-				required:true,
-			},
-			abstract:{
-				required:true,
-			},
+			//articlesort:{
+			//	required:true,
+			//},
+			//keywords:{
+			//	required:true,
+			//},
+			//abstract:{
+			//	required:true,
+			//},
 			author:{
 				required:true,
 			},
-			sources:{
-				required:true,
-			},
-			allowcomments:{
-				required:true,
-			},
-			commentdatemin:{
-				required:true,
-			},
-			commentdatemax:{
-				required:true,
-			},
+			//sources:{
+			//	required:true,
+			//},
+			//allowcomments:{
+			//	required:true,
+			//},
+			//commentdatemin:{
+			//	required:true,
+			//},
+			//commentdatemax:{
+			//	required:true,
+			//},
 
 		},
 		onkeyup:false,
@@ -168,12 +168,12 @@ $(function(){
 		success:"valid",
 		submitHandler:function(form){
 			//$(form).ajaxSubmit();
-			var index = parent.layer.getFrameIndex(window.name);
+		  var index = parent.layer.getFrameIndex(window.name);
 			//parent.$('.btn-refresh').click();
 			parent.layer.close(index);
 		}
 	});
-	
+	*/
 	$list = $("#fileList"),
 	$btn = $("#btn-star"),
 	state = "pending",

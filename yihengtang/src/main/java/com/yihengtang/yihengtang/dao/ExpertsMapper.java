@@ -16,7 +16,12 @@ import com.yihengtang.yihengtang.entity.Experts;
  */
 @Mapper
 public interface ExpertsMapper {
-
+	/**
+	 * 后台查询医师列表
+	 * @return
+	 */
+	@Select("SELECT e.id,e.name,d.department,e.position,e.amount,e.locations,e.kanzhenshijian,e.profiles,e.img,e.addtime FROM experts e,department d WHERE e.department_id = d.experts_id")
+	List<Experts> adminFindAll();
 	/**
 	 * 按ID查询专家
 	 * @return

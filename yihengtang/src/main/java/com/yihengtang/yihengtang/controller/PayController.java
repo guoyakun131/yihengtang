@@ -57,6 +57,8 @@ public class PayController {
 		if(userService.record(openid)) {
 			int str = Integer.valueOf(amount).intValue()/2;
 			amounts = String.valueOf(str);
+		}else {
+			amounts = amount;
 		}
 		
 		MyConfig config = new MyConfig();
