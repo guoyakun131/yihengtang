@@ -130,7 +130,7 @@ public class AdminController {
 	}	
 	
 	
-	@RequestMapping("/delete")
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	@ResponseBody
 	public String picture(HttpServletRequest request) {
 		String id = request.getParameter("id");
@@ -157,7 +157,7 @@ public class AdminController {
 		return "admin/picture-list";
 	}
 	
-	@RequestMapping("/imgState")
+	@RequestMapping(value = "/imgState",method = RequestMethod.POST)
 	@ResponseBody
 	public String imgState(HttpServletRequest request) {
 		String id = request.getParameter("id");
@@ -204,14 +204,13 @@ public class AdminController {
 		return "admin/experts";
 	}
 	
-	@RequestMapping("/imgDelete")
+	@RequestMapping(value = "/imgDelete", method = RequestMethod.POST)
+	@ResponseBody
 	public String imgDelete(Integer id) {
 		System.out.println(id);
-		
-		
-		if(imgMapper.imgDelete(id) = 1) {
-			return "失敗"
+		if(imgMapper.imgDelete(id) != 1) {
+			return "失败";
 		}
-		return "admin/experts";
+		return "成功";
 	}
 }

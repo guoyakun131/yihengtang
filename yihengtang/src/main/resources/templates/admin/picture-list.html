@@ -60,7 +60,7 @@
                   <i class="Hui-iconfont"></i></a>
                 <a style="text-decoration:none" class="ml-5" onclick="picture_edit('图库编辑','picture-add.html','10001')" href="javascript:;" title="编辑">
                   <i class="Hui-iconfont"></i></a>
-                <a style="text-decoration:none" class="ml-5" onclick="picture_del(this,'10001')" href="javascript:;" title="删除">
+                <a style="text-decoration:none" class="ml-5" th:onclick="'picture_del(this,'+${img.id}+');'" href="javascript:;" title="删除">
                   <i class="Hui-iconfont"></i></a>
               </td>
               <td class="td-manage" th:if="${img.state == 0}">
@@ -179,13 +179,16 @@
       }
 
       /*图片-删除*/
-      function picture_del(obj, id) {
+      function picture_del(obj,id) {
         layer.confirm('确认要删除吗？',
         function(index) {
           $.ajax({
             type: 'POST',
             url: '/admin/imgDelete',
-            dataType: 'json',
+            data: {
+                "id": id,
+              },
+            dataType: 'text',
             success: function(data) {
               $(obj).parents("tr").remove();
               layer.msg('已删除!', {
