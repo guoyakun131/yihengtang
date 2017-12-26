@@ -3,6 +3,7 @@ package com.yihengtang.yihengtang.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -21,8 +22,16 @@ public interface ExpertsMapper {
 	 * 后台查询医师列表
 	 * @return
 	 */
-	@Select("SELECT e.id,e.name,d.department,e.position,e.amount,e.locations,e.kanzhenshijian,e.profiles,e.img,e.addtime FROM experts e,department d WHERE e.department_id = d.experts_id")
+	@Select("SELECT e.id,e.name,e.gender,d.department,e.position,e.profile,e.amount,e.location,e.kanzhenshijian,e.profiles,e.img,e.addtime FROM experts e,department d WHERE e.department_id = d.id")
 	List<Experts> adminFindAll();
+	
+	/**
+	 * 后台查询编辑医生信息
+	 * @param id
+	 * @return
+	 */
+	@Select("SELECT e.id,e.name,e.gender,d.department,e.position,e.profile,e.amount,e.location,e.locations,e.kanzhenshijian,e.img,e.profiles from experts e, department d where e.department_id = d.id and e.id = #{id}")
+	Experts adminFindById(int id);
 	
 	@Delete("delete from experts where id = #{id}")
 	void expertsDel(int id);
@@ -65,11 +74,22 @@ public interface ExpertsMapper {
 	 * @param department
 	 * @return
 	 */
-	@Select("SELECT * from experts,department WHERE experts.department_id = department.experts_id and department.department=#{department}")
+	@Select("SELECT * from experts,department WHERE experts.department_id = department.id and department.department=#{department}")
 	List<Experts> expertsClassify(String department);
 	
 	@Update ("update experts set numberOfPatients= numberOfPatients + 1 where id = #{id}")
 	int numberOfPatients(int id);
+	
+	/**
+	 * 添加医师
+	 */
+	@Insert("INSERT INTO experts (name,gender,position,profile,profiles,kanzhenshijian,location,locations,amount,img,department_id,quantity,numberOfPatients,addtime)\r\n" + 
+			"VAlUES(#{name},#{gender},#{position},#{profile},#{profiles},#{kanzhenshijian},#{location},#{locations},#{amount},#{img},#{department_id},0,0,NOW())")
+	void expertsAdd(@Param("name")String name,@Param("gender")String gender,@Param("position")String position,
+			@Param("profile")String profile,@Param("profiles")String profiles,@Param("kanzhenshijian")String kanzhenshijian,
+			@Param("location")String location,@Param("locations")String locations,@Param("amount")String amount,
+			@Param("img")String img,@Param("department_id")int department_id
+			);
 	
 	
 }

@@ -28,7 +28,7 @@ public class Experts {
 	 */
 	private String  position;
 	/**
-	 * 简介
+	 * 荣誉称号
 	 */
 	private String  profile;
 	/**

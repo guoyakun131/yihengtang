@@ -35,7 +35,8 @@
 				<li class="dropDown dropDown_hover">
 					<a href="#" class="dropDown_A" ><span th:text="${admin}"></span><i class="Hui-iconfont">&#xe6d5;</i></a>
 					<ul class="dropDown-menu menu radius box-shadow">
-						<li><a href="javascript:;" onClick="myselfinfo()">修改密码</a></li>
+					
+					<li><a  onClick="change_password('修改密码','/admin/password','10001','600','270')">修改密码</a></li>
 						<li><a href="/admin/logout">退出</a></li>
 				</ul>
 			</li>
@@ -53,7 +54,9 @@
 				<ul>
 					<li><a data-href="/admin/user-list" data-title="用户信息" href="javascript:void(0);">用户信息</a></li>
 			</ul>
-		</dd>
+		</dd>	
+		
+				
 	</dl>
 		<dl id="menu-admin">
 			<dt><i class="Hui-iconfont">&#xe62d;</i> 医师管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
@@ -82,13 +85,7 @@
 			<dt><i class="Hui-iconfont">&#xe616;</i> 预约管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="charts-1.html" data-title="折线图" href="javascript:void(0)">折线图</a></li>
-					<li><a data-href="charts-2.html" data-title="时间轴折线图" href="javascript:void(0)">时间轴折线图</a></li>
-					<li><a data-href="charts-3.html" data-title="区域图" href="javascript:void(0)">区域图</a></li>
-					<li><a data-href="charts-4.html" data-title="柱状图" href="javascript:void(0)">柱状图</a></li>
-					<li><a data-href="charts-5.html" data-title="饼状图" href="javascript:void(0)">饼状图</a></li>
-					<li><a data-href="charts-6.html" data-title="3D柱状图" href="javascript:void(0)">3D柱状图</a></li>
-					<li><a data-href="charts-7.html" data-title="3D饼状图" href="javascript:void(0)">3D饼状图</a></li>
+					<li><a data-href="/admin/make" data-title="预约查看" href="javascript:void(0)">预约查看</a></li>
 			</ul>
 		</dd>
 	</dl>
@@ -155,6 +152,11 @@ function myselfinfo(){
 		title: '查看信息',
 		content: '<div>管理员信息</div>'
 	});
+}
+
+/*密码-修改*/
+function change_password(title,url,id,w,h){
+	layer_show(title,url,w,h);	
 }
 
 </script> 

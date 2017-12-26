@@ -29,7 +29,7 @@
   </nav> 
   <div class="page-container"> 
    <div class="cl pd-5 bg-1 bk-gray mt-20"> 
-    <span class="l"> <a class="btn btn-primary radius" onclick="picture_add('添加图片','picture-add.html')" href="javascript:;"><i class="Hui-iconfont"></i> 添加图片</a></span> 
+    <span class="l"> <a class="btn btn-primary radius" onclick="picture_add('添加医师','/experts-add.html')" href="javascript:;"><i class="Hui-iconfont"></i> 添加医师</a></span> 
     <span class="r">共有数据：<strong th:text="${expertsSize}"></strong> 条</span> 
    </div> 
    <div class="mt-20"> 
@@ -52,12 +52,16 @@
        <td th:text="${experts.id}"></td> 
        <td th:text="${experts.name}"></td> 
        <td th:text="${experts.department}"></td> 
-       <td th:text="${experts.position}"></td> 
-       <td> <p>看诊费用 : <span th:text="(${experts.amount} / 100)"></span>￥</p> <span>看诊地点 : <span th:text="${experts.locations}"></span></span> <span>看诊时间 : <span th:text="${experts.kanzhenshijian}"></span></span> </td> 
+       <td>
+        <p th:text="${experts.position}"></p>
+        <p th:text="${experts.profile}"></p>
+       </td> 
+       <td> <p>看诊费用 : <span th:text="(${experts.amount} / 100)"></span>￥</p> <span>看诊地点 : <span th:text="${experts.location}"></span></span> <span>看诊时间 : <span th:text="${experts.kanzhenshijian}"></span></span> </td> 
        <td th:text="${experts.profiles}"></td> 
        <td><img style="width: 50px;" alt="头像" src="" th:src="@{${experts.img}}" /></td> 
        <td th:text="${experts.addTime}"></td> 
-       <td class="td-manage"><a style="text-decoration: none" class="ml-5" onclick="picture_edit('图库编辑','picture-add.html','10001')" href="javascript:;" title="编辑"> <i class="Hui-iconfont"> </i> </a> <a style="text-decoration: none" class="ml-5" th:onclick="'picture_del(this,'+${experts.id}+');'" href="javascript:;" title="删除"> <i class="Hui-iconfont"> </i> </a></td> 
+       <td class="td-manage"><a style="text-decoration: none" class="ml-5"  th:href="@{/admin/experts-editor(id=${experts.id})}" title="编辑">
+        <i class="Hui-iconfont"> </i> </a> <a style="text-decoration: none" class="ml-5" th:onclick="'picture_del(this,'+${experts.id}+');'" href="javascript:;" title="删除"> <i class="Hui-iconfont"> </i> </a></td> 
       </tr> 
      </tbody> 
     </table> 
@@ -88,7 +92,7 @@ function picture_add(title,url){
 
 
 /*图片-编辑*/
-function picture_edit(title,url,id){
+function picture_edit(url,id){
 	var index = layer.open({
 		type: 2,
 		title: title,

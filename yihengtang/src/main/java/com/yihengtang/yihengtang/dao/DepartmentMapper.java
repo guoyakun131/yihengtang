@@ -2,6 +2,7 @@ package com.yihengtang.yihengtang.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -41,6 +42,20 @@ public interface DepartmentMapper {
 	@Select("SELECT department FROM department")
 	List<DepartmentAndNumber> departmentName();
 	
+	/**
+	 * 查询部门Id
+	 * @param department
+	 * @return
+	 */
+	@Select("SELECT id FROM department where department = #{department}")
+	Integer departmentId(String department);
+	
+	/**
+	 * 添加部门
+	 * @param department
+	 */
+	@Insert("insert into department (department) values (#{department})")
+	void departmentAdd(String department);
 }
 
 

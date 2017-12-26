@@ -58,16 +58,14 @@
               <td class="td-manage" th:if="${img.state == 1}">
                 <a style="text-decoration:none" th:onclick="'picture_stop(this,'+${img.id}+');'" href="javascript:;" title="下架">
                   <i class="Hui-iconfont"></i></a>
-                <a style="text-decoration:none" class="ml-5" onclick="picture_edit('图库编辑','picture-add.html','10001')" href="javascript:;" title="编辑">
-                  <i class="Hui-iconfont"></i></a>
+               
                 <a style="text-decoration:none" class="ml-5" th:onclick="'picture_del(this,'+${img.id}+');'" href="javascript:;" title="删除">
                   <i class="Hui-iconfont"></i></a>
               </td>
               <td class="td-manage" th:if="${img.state == 0}">
                 <a style="text-decoration:none" th:onclick="'picture_start(this,'+${img.id}+');'" href="javascript:;" title="发布">
                   <i class="Hui-iconfont"></i></a>
-                <a style="text-decoration:none" class="ml-5" onclick="picture_edit('图库编辑','picture-add.html','10001')" href="javascript:;" title="编辑">
-                  <i class="Hui-iconfont"></i></a>
+                
                 <a style="text-decoration:none" class="ml-5" th:onclick="'picture_del(this,'+${img.id}+');'" href="javascript:;" title="删除">
                   <i class="Hui-iconfont"></i></a>
               </td>

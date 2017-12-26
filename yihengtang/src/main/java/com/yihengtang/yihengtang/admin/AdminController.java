@@ -24,11 +24,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.yihengtang.yihengtang.dao.AdminMapper;
 import com.yihengtang.yihengtang.dao.ArticlesMapper;
+import com.yihengtang.yihengtang.dao.DepartmentMapper;
 import com.yihengtang.yihengtang.dao.ExpertsMapper;
 import com.yihengtang.yihengtang.dao.ImgMapper;
 import com.yihengtang.yihengtang.entity.Admin;
 import com.yihengtang.yihengtang.entity.Articles;
+import com.yihengtang.yihengtang.entity.Department;
+import com.yihengtang.yihengtang.entity.Experts;
 import com.yihengtang.yihengtang.entity.Img;
 import com.yihengtang.yihengtang.entity.User;
 import com.yihengtang.yihengtang.service.AdminService;
@@ -57,6 +61,12 @@ public class AdminController {
 	
 	@Autowired
 	private  ExpertsMapper expertsMapper;
+	
+	@Autowired
+	private  DepartmentMapper departmentMapper;
+	
+	@Autowired
+	private  AdminMapper adminMapper;
 	/**
 	 * 返回管理員登陸頁面
 	 * @return
@@ -292,6 +302,106 @@ public class AdminController {
         }
 	}
 	
+	
+	@RequestMapping(value = "/expertsAdd", method = RequestMethod.POST)
+	@ResponseBody
+	public String expertsAdd(@RequestParam("file") MultipartFile file,HttpServletRequest request) {//@RequestParam("articletitle") String articletitle,
+			//@RequestParam("articletype")String articletype,@RequestParam("author")String author,
+			//@RequestParam("editor")String editor) {
+		String name = request.getParameter("name");
+		String gender = request.getParameter("gender");
+		String department = request.getParameter("department");
+		String position = request.getParameter("position");
+		String profile = request.getParameter("profile");
+		//String profiles = request.getParameter("profiles");
+		String amount = request.getParameter("amount");
+		String kanzhenshijian = request.getParameter("kanzhenshijian");
+		String location = request.getParameter("location");
+		String locations = request.getParameter("locations");
+		String profiles = request.getParameter("editor");
+		String imgUrl = null;
+		
+		Integer departmentId = departmentMapper.departmentId(department);
+		if(departmentId == null) {
+			departmentMapper.departmentAdd(department);
+			departmentId = departmentMapper.departmentId(department);
+		}
+		
+		if (!file.isEmpty()) {
+            try {
+            	 // 上传到指定目录
+            	  // file.transferTo(dest);
+            	System.out.println(file.getOriginalFilename());
+            	String img ="D:\\eclipse-workspace\\yihengtang\\yihengtang\\src\\main\\webapp\\"+file.getOriginalFilename();
+            	imgUrl = "https://liangyi120.xin/"+file.getOriginalFilename();
+                //imgMapper.addUrl(imgUrl);
+            	BufferedOutputStream out = new BufferedOutputStream(
+                        new FileOutputStream(new File(img)));
+                out.write(file.getBytes());
+                out.flush();
+                out.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                return "上传失败," + e.getMessage();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return "上传失败," + e.getMessage();
+            }
+            expertsMapper.expertsAdd(name, gender, position, profile, profiles, kanzhenshijian, location, locations, amount, imgUrl, departmentId);
+            return "上传成功";
+        } else {
+            return "上传失败，因为文件是空的.";
+        }
+	}
+	
+	/**
+	 * 按id查询医师
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/experts-editor")
+	public String expertsEditor(int id,Model model) {
+		model.addAttribute("experts",expertsMapper.adminFindById(id));
+		return "admin/experts-editor";
+	}
+	
+	/**
+	 * 修改密码
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/password")
+	public String password() {
+		return "admin/password";
+	}
+	
+	/**
+	 * 修改
+	 * @param admin
+	 * @param password
+	 * @param Password2
+	 * @return
+	 */
+	@RequestMapping("/neWpassword")
+	@ResponseBody
+	public String password(String adminName,String password,String Password2) {
+		if(adminMapper.adminName(adminName) != null) {
+			if(password.equals(Password2)) {
+				adminMapper.password(Password2, adminName);
+				return "成功";
+			}
+		}
+		
+		return "失败";
+	}
+	
+
+	@RequestMapping("/make")
+	public String make() {
+		return "/admin/make";
+	}
 	
 //	@RequestMapping(value = "/imgUpload", method = RequestMethod.POST)
 //	@ResponseBody

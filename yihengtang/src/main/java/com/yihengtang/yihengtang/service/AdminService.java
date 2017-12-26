@@ -41,4 +41,6 @@ public class AdminService {
 	public List<Img> img(){
 		return imgMapper.img();
 	}
+	
+	
 }
