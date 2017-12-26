@@ -149,6 +149,27 @@ public class AdminController {
 	}
 	
 	/**
+	 * 删除医师
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "/expertsDel", method = RequestMethod.POST)
+	@ResponseBody
+	public String picture(String id) {
+		System.out.println(id);
+		 //Map<String,String> map = new HashMap<String, String>();
+		String msg = null;
+		try {
+		expertsMapper.expertsDel(Integer.valueOf(id));
+		}catch (Exception e) {
+			e.printStackTrace();
+			msg = "失败";
+		}
+		msg = "成功";
+		return "成功";
+	}
+	
+	/**
 	 *轮播图
 	 * @param model
 	 * @return

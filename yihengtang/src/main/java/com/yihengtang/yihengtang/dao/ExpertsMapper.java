@@ -2,6 +2,7 @@ package com.yihengtang.yihengtang.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -22,6 +23,9 @@ public interface ExpertsMapper {
 	 */
 	@Select("SELECT e.id,e.name,d.department,e.position,e.amount,e.locations,e.kanzhenshijian,e.profiles,e.img,e.addtime FROM experts e,department d WHERE e.department_id = d.experts_id")
 	List<Experts> adminFindAll();
+	
+	@Delete("delete from experts where id = #{id}")
+	void expertsDel(int id);
 	/**
 	 * 按ID查询专家
 	 * @return

@@ -34,7 +34,7 @@ public interface ArticlesMapper {
 	 * @param id
 	 * @return
 	 */
-	@Delete("delete from articles where id=#{id}")  
+	@Delete("delete from articles where id = #{id}")  
 	int delete(int id);
 	
 	@Select("select id,details,type,author,time,browseInt from articles")
