@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.yihengtang.yihengtang.entity.Admin;
+import com.yihengtang.yihengtang.entity.Make;
 
 public interface AdminMapper {
 	/**
@@ -28,7 +29,7 @@ public interface AdminMapper {
 	 * 修改密码
 	 */
 	@Update("update admin set password = #{password} where adminName = #{admin}")
-	void password(String password,String admin);
+	void password(@Param("password")String password,@Param("admin")String admin);
 	
 	/**
 	 * 查询用户是否存在
@@ -43,5 +44,5 @@ public interface AdminMapper {
 	 * @return
 	 */
 	@Select("SELECT e.name,u.nick_name, r.state from experts e, user u, reservation r WHERE e.id = r.e_id and u.id = r.u_id;")
-	List<Object> yuyue();
+	List<Make> yuyue();
 }

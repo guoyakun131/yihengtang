@@ -386,11 +386,11 @@ public class AdminController {
 	 */
 	@RequestMapping("/neWpassword")
 	@ResponseBody
-	public String password(String adminName,String password,String Password2) {
-		System.out.println(adminName);
-		if(adminMapper.adminName(adminName) != null) {
-			if(password.equals(Password2)) {
-				adminMapper.password(Password2, adminName);
+	public String password(String adminName,String password,String password2) {
+		
+		if(adminMapper.adminName(adminName) != "") {
+			if(password.equals(password2)) {
+				adminMapper.password(password2, adminName);
 				return "成功";
 			}
 		}
@@ -401,10 +401,16 @@ public class AdminController {
 
 	@RequestMapping("/make")
 	public String make(Model model) {
+		model.addAttribute("makeList",adminMapper.yuyue());
 		
 		return "/admin/make";
 	}
 	
+	
+	@RequestMapping("/complete")
+	public String complete() {
+		return "/admin/complete";
+	}
 //	@RequestMapping(value = "/imgUpload", method = RequestMethod.POST)
 //	@ResponseBody
 //	public String imgUpload(@RequestParam("file") MultipartFile file) {
