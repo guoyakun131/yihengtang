@@ -43,6 +43,6 @@ public interface AdminMapper {
 	 * 后台查询预约
 	 * @return
 	 */
-	@Select("SELECT e.name,u.nick_name, r.state from experts e, user u, reservation r WHERE e.id = r.e_id and u.id = r.u_id;")
+	@Select("SELECT e.name,u.nick_name, r.state,r.id from experts e, user u, reservation r WHERE e.id = r.e_id and u.id = r.u_id;")
 	List<Make> yuyue();
 }

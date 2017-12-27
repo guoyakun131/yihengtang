@@ -9,7 +9,6 @@ import java.net.URL;
 
 public class OpenHttps {
 
-	//����http����  requestUrlΪ�����ַ  requestMethod����ʽ��ֵΪ"GET"��"POST"  
     public static String httpRequest(String requestUrl,String requestMethod,String outputStr){  
         StringBuffer buffer=null;  
         try{  
@@ -19,14 +18,12 @@ public class OpenHttps {
         conn.setDoInput(true);  
         conn.setRequestMethod(requestMethod);  
         conn.connect();  
-        //����������д���� Ҳ���Ƿ���http������Ҫ���Ĳ���  
         if(null!=outputStr){  
             OutputStream os=conn.getOutputStream();  
             os.write(outputStr.getBytes("utf-8"));  
             os.close();  
         }  
           
-        //��ȡ�������˷��ص�����  
         InputStream is=conn.getInputStream();  
         InputStreamReader isr=new InputStreamReader(is,"utf-8");  
         BufferedReader br=new BufferedReader(isr);  
