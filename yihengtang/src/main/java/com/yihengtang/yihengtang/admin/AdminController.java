@@ -387,6 +387,7 @@ public class AdminController {
 	@RequestMapping("/neWpassword")
 	@ResponseBody
 	public String password(String adminName,String password,String Password2) {
+		System.out.println(adminName);
 		if(adminMapper.adminName(adminName) != null) {
 			if(password.equals(Password2)) {
 				adminMapper.password(Password2, adminName);
@@ -399,7 +400,8 @@ public class AdminController {
 	
 
 	@RequestMapping("/make")
-	public String make() {
+	public String make(Model model) {
+		
 		return "/admin/make";
 	}
 	
