@@ -44,7 +44,7 @@ public class PayController {
 	}
 
 	@RequestMapping(value = "/order", method = RequestMethod.GET)
-	public Map<String, Object> ordre(HttpServletRequest request) {
+	public Map<String, Object> ordre(HttpServletRequest request) throws Exception {
 		openid = request.getParameter("openid");
 		
 		
@@ -75,7 +75,7 @@ public class PayController {
 		data.put("fee_type", "CNY");
 		data.put("total_fee", amounts);
 		data.put("spbill_create_ip", IpUtil.getIpAddr(request).toString());
-		data.put("notify_url", "https://liangyi120.xin/pay/wxNotify");
+		data.put("notify_url", "https://qubing.net.cn/pay/wxNotify");
 		data.put("trade_type", "JSAPI"); // 此处指定为小程序
 		// data.put("product_id", "12");
 		System.out.println(data);
@@ -100,16 +100,20 @@ public class PayController {
 			// 拼接签名需要的参数
 			String stringSignTemp = "appId=" + config.getAppID() + "&nonceStr=" + nonce_str + "&package=prepay_id="
 					+ prepay_id + "&signType=MD5&timeStamp=" + timeStamp;
+			System.out.println("stringSignTemp"+stringSignTemp);
 			// 再次签名，这个签名用于小程序端调用wx.requesetPayment方法
-			String paySign = PayUtil.sign(stringSignTemp, config.getKey(), "utf-8").toUpperCase();
+			System.out.println("执行");
+			String paySign = PayUtil.sign(stringSignTemp, config.getKey(), "UTF-8").toString();
+			//String paySign = WXPayUtil.generateSignature(resp,config.getKey());//再签名一次
 			response.put("paySign", paySign);
+			System.out.println("response:"+response);
 
 		}
 		return response;
 
 	}
 
-	@RequestMapping(value = "/wxNotify", method = RequestMethod.GET)
+	@RequestMapping(value = "/wxNotify", method = RequestMethod.POST)
 	public void wxNotify(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//这句话的意思，是让浏览器用utf8来解析返回的数据  
       //  response.setHeader("Content-type", "text/html;charset=UTF-8");  

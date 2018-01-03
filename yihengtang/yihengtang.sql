@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2017-12-26 17:53:42
+Date: 2017-12-28 15:05:21
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -59,6 +59,7 @@ INSERT INTO `articles` VALUES ('6', '饭后', '2017-12-25', '112', '28', 'https:
 INSERT INTO `articles` VALUES ('7', '专家提示刚烧开的水不能引用', '2017-12-25', '123', '22', 'https://liangyi120.xin/images/yisheng6.jpg', '3', '假数据假数据假数据假数据', null);
 INSERT INTO `articles` VALUES ('8', '专家提示刚烧开的水不能引用', '2017-12-25', '43', '221', 'https://liangyi120.xin/images/yisheng7.jpg', '4', '假数据假数据', null);
 INSERT INTO `articles` VALUES ('29', '饭前一根烟', '2017-12-25', '0', '0', 'https://liangyi120.xin/微信图片_20171215172724.jpg', '1', '<p style=\"text-align: center;\"><span style=\"font-size: 24px;\">奥术大师</span></p><h1><span style=\"font-size: 24px;\">我的老家就在这里</span></h1><p><span style=\"font-size: 24px;\">你在了啊<br/></span></p>', '刘备');
+INSERT INTO `articles` VALUES ('30', '测试', '2017-12-28', '0', '0', 'https://liangyi120.xin/微信图片_20171215172724.jpg', '1', '<p>测试</p>', '测试');
 
 -- ----------------------------
 -- Table structure for department
@@ -69,7 +70,7 @@ CREATE TABLE `department` (
   `department` varchar(255) DEFAULT NULL COMMENT '科室名',
   `experts_id` int(11) DEFAULT NULL COMMENT '关联的医生Id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of department
@@ -125,7 +126,7 @@ CREATE TABLE `experts` (
   `numberOfPatients` int(11) NOT NULL,
   `addtime` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of experts

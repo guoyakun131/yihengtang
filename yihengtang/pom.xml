@@ -6,7 +6,7 @@
 	<groupId>com.yihengtang</groupId>
 	<artifactId>yihengtang</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>yihengtang</name>
 	<description>Demo project for Spring Boot</description>
@@ -29,21 +29,45 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			 <!-- 如果在使用自带tomcat请注释下面，如果使用第三方tomcat不要注释下面  -->
+        <exclusions>    
+               <exclusion>    
+                   <groupId>org.springframework.boot</groupId>    
+                   <artifactId>spring-boot-starter-tomcat</artifactId>    
+               </exclusion>    
+           </exclusions>   
+			 
 		</dependency>
 
+<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>javax.servlet-api</artifactId>
+    <scope>provided</scope>
+</dependency>
 
+
+
+ <!--因配置外部TOMCAT 而配置
+<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 
+<!-- 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
 		</dependency>
-
+ -->
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
@@ -64,12 +88,14 @@
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
+			<!--  
 			<exclusions>
 				<exclusion>
 					<groupId>commons-codec</groupId>
 					<artifactId>commons-codec</artifactId>
 				</exclusion>
 			</exclusions>
+			-->
 		</dependency>
 
 		<dependency>
