@@ -47,6 +47,15 @@ public interface ArticlesMapper {
 	 */
 	@Select("select details,author,time,text,img from articles where id =#{id}")
 	Articles findById(int id);
+	
+	@Select("select * from articles where id =#{id}")
+	Articles articleUe(int id);
+	
+	@Update("UPDATE articles set details = #{details}, type = #{type},author = #{author},text = #{text} WHERE id = #{id}")
+	void aeticeUpadate(@Param("details")String details, @Param("type")int type, @Param("author")String author, @Param("text")String text,@Param("id")int id);
+	
+	@Update("UPDATE articles set details = #{details}, img = #{img}, type = #{type},author = #{author},text = #{text} WHERE id = #{id}")
+	void aeticeUpadateImg(@Param("details")String details, @Param("img")String img, @Param("type")int type, @Param("author")String author, @Param("text")String text,@Param("id")int id);
 	/**
 	 * 查询文章信息
 	 * @return

@@ -31,8 +31,12 @@ public class PayUtil {
      * @return 签名结果  
      */   
     public static String sign(String text, String key, String input_charset) {   
-        text = text + "&key=" + key;   
-        return DigestUtils.md5Hex(getContentBytes(text, input_charset));   
+        text = text + "&key=" + key;  
+        System.out.println(text);
+        System.out.println(input_charset);
+       String ss = DigestUtils.md5Hex(getContentBytes(text, input_charset));
+       System.out.println("sign"+ss);
+        return ss;   
     }   
     /**  
      * 签名字符串  

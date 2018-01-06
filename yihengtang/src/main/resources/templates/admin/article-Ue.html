@@ -24,91 +24,59 @@
 <![endif]-->
 <!--/meta 作为公共模版分离出去-->
 
-<title>编辑医师</title>
+<title>图文</title>
+<meta name="keywords" content="H-ui.admin v3.1,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载"/>
+<meta name="description" content="H-ui.admin v3.1，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。"/>
 </head>
 <body>
 <article class="page-container">
-	<form class="form form-horizontal" id="form-article-add" action="/admin/experts-editors" method="POST" enctype="multipart/form-data">
+	<form class="form form-horizontal" id="form-article-add" action="/admin/artucleUpadate" method="POST" enctype="multipart/form-data">
 		
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>Id：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" th:value="${experts.id}" placeholder="" id="articletitle" name="id"/>
+				<input type="text" class="input-text" th:value="${articles.id}" placeholder="" id="articletitle" name="id"/>
 			</div>
 		</div>
 		
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>医师名称：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>文章标题：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" th:value="${experts.name}" placeholder="" id="articletitle" name="name"/>
+				<input type="text" class="input-text" th:value="${articles.details}" placeholder="" id="articletitle" name="articletitle"/>
 			</div>
 		</div>
 		
+		
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>性别：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" th:value="${experts.gender}" placeholder="" id="articletitle" name="gender"/>
-			</div>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>文章类型：</label>
+			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
+				<select name="articletype" class="select">
+					<option value="1" th:selected="${articles.type=='1'}">1</option>
+					<option value="2" th:selected="${articles.type=='2'}">2</option>
+					<option value="3" th:selected="${articles.type=='3'}">3</option>
+					<option value="4" th:selected="${articles.type=='4'}">4</option>
+					<option value="5" th:selected="${articles.type=='5'}">5</option>
+					<option value="6" th:selected="${articles.type=='6'}">6</option>
+				</select>
+				</span> </div>
 		</div>
 		
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>科室：</label>
+			<label class="form-label col-xs-4 col-sm-2">文章作者：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" th:value="${experts.department}" placeholder="" id="articletitle" name="department"/>
-			</div>
-		</div>
-		
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>职位：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" th:value="${experts.position}" placeholder="" id="articletitle" name="position"/>
-			</div>
-		</div>
-		
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>荣誉称号：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" th:value="${experts.profile}" placeholder="" id="articletitle" name="profile"/>
-			</div>
-		</div>
-		
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>看诊费用：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" th:value="${experts.amount}" placeholder="" id="articletitle" name="amount"/>
-			</div>
-		</div>
-		
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>看诊地点：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" th:value="${experts.location}" placeholder="" id="articletitle" name="location"/>
-			</div>
-		</div>
-		
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>详细地点：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" th:value="${experts.locations}" placeholder="" id="articletitle" name="locations"/>
-			</div>
-		</div>
-		
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>看诊时间：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" th:value="${experts.kanzhenshijian}" placeholder="" id="articletitle" name="kanzhenshijian"/>
+				<input type="text" class="input-text" th:value="${articles.author}" placeholder="" id="author" name="author"/>
 			</div>
 		</div>
 		
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>照片：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-			<img  th:src="@{${experts.img}}"></img>
+			<img  th:src="@{${articles.img}}"></img>
 			</div>
 		</div>
 		
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">更换医师照片：</label>
+			<label class="form-label col-xs-4 col-sm-2">更换文章封面图：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<span class="btn-upload form-group">
 				<input class="input-text upload-url" type="text" name="video_img_url" id="uploadfile-2" readonly="readonly"  datatype="*" nullmsg="请添加图片！" style="width:200px" value=""/>
@@ -119,14 +87,15 @@
 		</div>
 		
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">医师介绍：</label>
+			<label class="form-label col-xs-4 col-sm-2">文章内容：</label>
 			<div class="formControls col-xs-8 col-sm-9"> 
-				<script name="editor" id="editor" type="text/plain" style="width:100%;height:400px;" th:text="${experts.profiles}"></script> 
+				<script name="editor" id="editor" type="text/plain" style="width:100%;height:400px;" th:text="${articles.text}"></script> 
 			</div>
 		</div>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
 				<button class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 提交</button>
+				<button onClick="removeIframe();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 			</div>
 		</div>
 	</form>
