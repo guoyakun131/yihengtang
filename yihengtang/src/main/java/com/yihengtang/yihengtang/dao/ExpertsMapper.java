@@ -91,5 +91,51 @@ public interface ExpertsMapper {
 			@Param("img")String img,@Param("department_id")int department_id
 			);
 	
+	/**
+	 * 编辑医师
+	 * @param name
+	 * @param gender
+	 * @param position
+	 * @param profile
+	 * @param profiles
+	 * @param kanzhenshijian
+	 * @param location
+	 * @param locations
+	 * @param amount
+	 * @param img
+	 * @param department_id
+	 * @param id
+	 */
+	@Update("UPDATE experts SET NAME = #{name},gender = #{gender},position = #{position},PROFILE = #{profile},"
+			+ "PROFILES = #{profiles},kanzhenshijian = #{kanzhenshijian},location = #{location},locations = #{locations}, "
+			+ "amount = #{amount},img = #{img},department_id = #{department_id},"
+			+ "addtime = NOW() where id = #{id}")
+	void expertsEditor(@Param("name")String name,@Param("gender")String gender,@Param("position")String position,
+			@Param("profile")String profile,@Param("profiles")String profiles,@Param("kanzhenshijian")String kanzhenshijian,
+			@Param("location")String location,@Param("locations")String locations,@Param("amount")String amount,
+			@Param("img")String img,@Param("department_id")int department_id,@Param("id")int id);
 	
+	/**
+	 * 编辑医师不更改头像
+	 * @param name
+	 * @param gender
+	 * @param position
+	 * @param profile
+	 * @param profiles
+	 * @param kanzhenshijian
+	 * @param location
+	 * @param locations
+	 * @param amount
+	 * @param img
+	 * @param department_id
+	 * @param id
+	 */
+	@Update("UPDATE experts SET NAME = #{name},gender = #{gender},position = #{position},PROFILE = #{profile},"
+			+ "PROFILES = #{profiles},kanzhenshijian = #{kanzhenshijian},location = #{location},locations = #{locations}, "
+			+ "amount = #{amount},department_id = #{department_id},"
+			+ "addtime = NOW() where id = #{id}")
+	void expertsEditorNoImg(@Param("name")String name,@Param("gender")String gender,@Param("position")String position,
+			@Param("profile")String profile,@Param("profiles")String profiles,@Param("kanzhenshijian")String kanzhenshijian,
+			@Param("location")String location,@Param("locations")String locations,@Param("amount")String amount,
+			@Param("department_id")int department_id,@Param("id")int id);
 }

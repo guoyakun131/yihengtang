@@ -213,7 +213,7 @@ public class AdminController {
             	  // file.transferTo(dest);
             	System.out.println(file.getOriginalFilename());
             	String img ="D:\\eclipse-workspace\\yihengtang\\yihengtang\\src\\main\\webapp\\"+file.getOriginalFilename();
-                String imgUrl = "https://liangyi120.xin/"+file.getOriginalFilename();
+                String imgUrl = "https://qubing.net.cn/"+file.getOriginalFilename();
                 imgMapper.addUrl(imgUrl);
             	BufferedOutputStream out = new BufferedOutputStream(
                         new FileOutputStream(new File(img)));
@@ -281,7 +281,7 @@ public class AdminController {
             	  // file.transferTo(dest);
             	System.out.println(file.getOriginalFilename());
             	String img ="D:\\eclipse-workspace\\yihengtang\\yihengtang\\src\\main\\webapp\\"+file.getOriginalFilename();
-            	imgUrl = "https://liangyi120.xin/"+file.getOriginalFilename();
+            	imgUrl = "https://qubing.net.cn/"+file.getOriginalFilename();
                 //imgMapper.addUrl(imgUrl);
             	BufferedOutputStream out = new BufferedOutputStream(
                         new FileOutputStream(new File(img)));
@@ -302,12 +302,71 @@ public class AdminController {
         }
 	}
 	
+	/*
+	 * 图文编辑
+	 */
+	@RequestMapping("/article-Ue")
+	public String articleUe(int id,Model model) {
+		System.out.println(id);
+		Articles articles = articlesMapper.articleUe(id);
+		model.addAttribute("articles",articles);
+		return "admin/article-Ue";
+	}
+	
+	
+	/**
+	 * 图文更新
+	 * @param file
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/artucleUpadate", method = RequestMethod.POST)
+	@ResponseBody
+	public String artucleUpadate(@RequestParam("file") MultipartFile file,HttpServletRequest request) {//@RequestParam("articletitle") String articletitle,
+			//@RequestParam("articletype")String articletype,@RequestParam("author")String author,
+			//@RequestParam("editor")String editor) {
+		int id= Integer.valueOf(request.getParameter("id"));
+		String articletitle = request.getParameter("articletitle");
+		String articletype = request.getParameter("articletype");
+		String author = request.getParameter("author");
+		String editor = request.getParameter("editor");
+		String imgUrl = null;
+		if (!file.isEmpty()) {
+            try {
+            	 // 上传到指定目录
+            	  // file.transferTo(dest);
+            	System.out.println(file.getOriginalFilename());
+            	String img ="D:\\eclipse-workspace\\yihengtang\\yihengtang\\src\\main\\webapp\\"+file.getOriginalFilename();
+            	imgUrl = "https://qubing.net.cn/"+file.getOriginalFilename();
+                //imgMapper.addUrl(imgUrl);
+            	BufferedOutputStream out = new BufferedOutputStream(
+                        new FileOutputStream(new File(img)));
+                out.write(file.getBytes());
+                out.flush();
+                out.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                return "上传失败," + e.getMessage();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return "上传失败," + e.getMessage();
+            }
+            //articlesMapper.addArticles(articletitle, imgUrl,Integer.valueOf(articletype), editor, author);
+            articlesMapper.aeticeUpadateImg(articletitle, imgUrl, Integer.valueOf(articletype),author,editor,id);
+            return "保存成功";
+        } else {
+        	articlesMapper.aeticeUpadate(articletitle, Integer.valueOf(articletype), author, editor, id);
+            return "保存成功。";
+        }
+	}
+	
 	
 	@RequestMapping(value = "/expertsAdd", method = RequestMethod.POST)
 	@ResponseBody
 	public String expertsAdd(@RequestParam("file") MultipartFile file,HttpServletRequest request) {//@RequestParam("articletitle") String articletitle,
 			//@RequestParam("articletype")String articletype,@RequestParam("author")String author,
 			//@RequestParam("editor")String editor) {
+		
 		String name = request.getParameter("name");
 		String gender = request.getParameter("gender");
 		String department = request.getParameter("department");
@@ -333,7 +392,7 @@ public class AdminController {
             	  // file.transferTo(dest);
             	System.out.println(file.getOriginalFilename());
             	String img ="D:\\eclipse-workspace\\yihengtang\\yihengtang\\src\\main\\webapp\\"+file.getOriginalFilename();
-            	imgUrl = "https://liangyi120.xin/"+file.getOriginalFilename();
+            	imgUrl = "https://qubing.net.cn/"+file.getOriginalFilename();
                 //imgMapper.addUrl(imgUrl);
             	BufferedOutputStream out = new BufferedOutputStream(
                         new FileOutputStream(new File(img)));
@@ -353,6 +412,67 @@ public class AdminController {
             return "上传失败，因为文件是空的.";
         }
 	}
+	
+	/**
+	 * 编辑医师
+	 * @param file
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/experts-editors", method = RequestMethod.POST)
+	@ResponseBody
+	public String expertsEditor(@RequestParam("file") MultipartFile file,HttpServletRequest request) {//@RequestParam("articletitle") String articletitle,
+			//@RequestParam("articletype")String articletype,@RequestParam("author")String author,
+			//@RequestParam("editor")String editor) {
+		int id =Integer.valueOf(request.getParameter("id")); 
+		String name = request.getParameter("name");
+		System.out.println(name);
+		String gender = request.getParameter("gender");
+		String department = request.getParameter("department");
+		String position = request.getParameter("position");
+		String profile = request.getParameter("profile");
+		//String profiles = request.getParameter("profiles");
+		String amount = request.getParameter("amount");
+		String kanzhenshijian = request.getParameter("kanzhenshijian");
+		String location = request.getParameter("location");
+		String locations = request.getParameter("locations");
+		String profiles = request.getParameter("editor");
+		String imgUrl = null;
+		
+		Integer departmentId = departmentMapper.departmentId(department);
+		if(departmentId == null) {
+			departmentMapper.departmentAdd(department);
+			departmentId = departmentMapper.departmentId(department);
+		}
+		
+		if (!file.isEmpty()) {
+            try {
+            	 // 上传到指定目录
+            	  // file.transferTo(dest);
+            	System.out.println(file.getOriginalFilename());
+            	String img ="D:\\eclipse-workspace\\yihengtang\\yihengtang\\src\\main\\webapp\\"+file.getOriginalFilename();
+            	imgUrl = "https://qubing.net.cn/"+file.getOriginalFilename();
+                //imgMapper.addUrl(imgUrl);
+            	BufferedOutputStream out = new BufferedOutputStream(
+                        new FileOutputStream(new File(img)));
+                out.write(file.getBytes());
+                out.flush();
+                out.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                return "图片上传失败," + e.getMessage();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return "图片上传失败," + e.getMessage();
+            }
+            expertsMapper.expertsEditor(name, gender, position, profile, profiles, kanzhenshijian, location, locations, amount, imgUrl, departmentId,id);
+            return "保存成功";
+        } else {
+        	expertsMapper.expertsEditorNoImg(name, gender, position, profile, profiles, kanzhenshijian, location, locations, amount, departmentId,id);
+            return "保存成功.";
+        }
+	}
+	
 	
 	/**
 	 * 按id查询医师
@@ -411,6 +531,44 @@ public class AdminController {
 	public String complete() {
 		return "/admin/complete";
 	}
+	
+	/**
+	 * 接受预约
+	 * @param id
+	 * @param state
+	 * @return
+	 */
+	@RequestMapping("/jieYuyue")
+	@ResponseBody
+	public String jieYuyue(int id,int state) {
+		String isError = "成功";
+		try {
+		adminMapper.jieshouyuyue("周一至周五", id);
+		}catch (Exception e) {
+			isError = "失败";
+			e.printStackTrace();
+		}
+		return isError;
+	}
+	
+	/**
+	 * 删除
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("/shanchu")
+	@ResponseBody
+	public String shanchu(int id) {
+		String isError = "成功";
+		try {
+		adminMapper.shanchu(id);
+		}catch (Exception e) {
+			isError = "失败";
+			e.printStackTrace();
+		}
+		return isError;
+	}
+	
 //	@RequestMapping(value = "/imgUpload", method = RequestMethod.POST)
 //	@ResponseBody
 //	public String imgUpload(@RequestParam("file") MultipartFile file) {
