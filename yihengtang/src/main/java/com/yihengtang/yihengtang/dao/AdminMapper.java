@@ -61,4 +61,6 @@ public interface AdminMapper {
 	 */
 	@Delete("delete from reservation where id = #{id}")
 	void shanchu(int id);
+	
+	
 }

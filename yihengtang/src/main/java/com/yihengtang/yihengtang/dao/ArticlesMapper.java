@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.yihengtang.yihengtang.entity.Articles;
+import com.yihengtang.yihengtang.entity.G;
 
 
 /**
@@ -81,4 +82,12 @@ public interface ArticlesMapper {
 	 */
 	@Update ("update articles set browseInt= browseInt + 1 where id = #{id}")
 	void read(int id);
+	
+	/**
+	 * 通告查詢
+	 * @param state
+	 * @return
+	 */
+	@Select("select * from g")
+	List<G> g();
 }

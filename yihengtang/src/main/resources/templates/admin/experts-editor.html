@@ -75,7 +75,7 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>看诊费用：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" th:value="${experts.amount}" placeholder="" id="articletitle" name="amount"/>
+				<input type="text" class="input-text" th:value="${experts.amount} / 100" placeholder="" id="articletitle" name="amount"/>
 			</div>
 		</div>
 		
@@ -152,7 +152,7 @@
     UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
     UE.Editor.prototype.getActionUrl = function(action) {
         if (action == 'uploadimage' || action == 'uploadscrawl' || action == 'uploadimage') {
-            return 'https://liangyi120.xin/admin/imgUpload'; //在这里返回我们实际的上传图片地址
+            return 'https://qubing.net.cn/admin/upload'; //在这里返回我们实际的上传图片地址
         } else {
             return this._bkGetActionUrl.call(this, action);
         }

@@ -7,7 +7,9 @@ package com.yihengtang.yihengtang.util;
  */
 public class WxPayConfig {
 	//小程序appid
-	public static final String appid = "wx0d0edc31204549b9";
+	//public static final String appid = "wx0d0edc31204549b9";
+	//小程序appid
+	public static final String appid = "wxaffdf037ed96e75d";
 	//微信支付的商户id
 	public static final String mch_id = "1429475902";
 	//微信支付的商户密钥

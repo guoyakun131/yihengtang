@@ -9,7 +9,7 @@ public class MyConfig implements WXPayConfig{
 	@Override
 	public String getAppID() {
 		// TODO Auto-generated method stub
-		return "wx0d0edc31204549b9";
+		return "wxaffdf037ed96e75d";
 	}
 
 	@Override

@@ -24,10 +24,22 @@ public class UeditorContorller {
 		           "                \"imageCompressEnable\": true, \n" +
 		           "                \"imageCompressBorder\": 1600, \n" +
 		           "                \"imageInsertAlign\": \"none\", \n" +
-		           "                \"imageUrlPrefix\": \"\",\n" +
-		           "                \"imagePathFormat\": \"/ueditor/jsp/upload/image/{yyyy}{mm}{dd}/{time}{rand:6}\" }";
+		           //"                \"imageUrlPrefix\": \"\",\n" +
+		          // "                \"imagePathFormat\": \"/ueditor/jsp/upload/image/{yyyy}{mm}{dd}/{time}{rand:6}\" }";
+		          "    \"imageUrlPrefix\": \"https://qubing.net.cn\", \n" + 
+		          "                \"imagePathFormat\": \"{filename}\" }";
+		
+//		String s = "\"imageActionName\": \"uploadimage\",\n" + 
+//				"    \"imageFieldName\": \"upfile\", \n" + 
+//				"    \"imageMaxSize\": 2048000, \n" + 
+//				"    \"imageAllowFiles\": [\".png\", \".jpg\", \".jpeg\", \".gif\", \".bmp\"], \n" + 
+//				"    \"imageCompressEnable\": true, \n" + 
+//				"    \"imageCompressBorder\": 1600, \n" + 
+//				"    \"imageInsertAlign\": \"none\", \n" + 
+//				"    \"imageUrlPrefix\": \"https://qubing.net.cn/\", \n" + 
+//				"    \"imagePathFormat\": \"./webapp/{filename}";
 		    return s;
 	    }
-	
-	
+
+
 }

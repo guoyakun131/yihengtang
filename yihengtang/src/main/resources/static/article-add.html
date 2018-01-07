@@ -106,7 +106,7 @@
     UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
     UE.Editor.prototype.getActionUrl = function(action) {
         if (action == 'uploadimage' || action == 'uploadscrawl' || action == 'uploadimage') {
-            return 'https://liangyi120.xin/admin/imgUpload'; //在这里返回我们实际的上传图片地址
+            return 'https://qubing.net.cn/admin/upload'; //在这里返回我们实际的上传图片地址
         } else {
             return this._bkGetActionUrl.call(this, action);
         }

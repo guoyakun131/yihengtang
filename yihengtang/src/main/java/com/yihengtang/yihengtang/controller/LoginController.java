@@ -23,17 +23,21 @@ public class LoginController {
 	@RequestMapping("/login")
 	public String login(HttpServletRequest request) {
     String code = request.getParameter("code");
+    System.out.println("code"+code);
     String nick_Name = request.getParameter("user");
     String avatra = request.getParameter("avatra");
 		if (code != null && !"".equals(code)) {
 			String url = "https://api.weixin.qq.com/sns/jscode2session";
-			String appId = "wx0d0edc31204549b9";
-			String appSecret = "8a67fdf3f2fde35392183e3691177e33";
+			//String appId = "wx0d0edc31204549b9";
+			String appId = "wxaffdf037ed96e75d";
+			//String appSecret = "8a67fdf3f2fde35392183e3691177e33";
+			String appSecret = "1a6bf4f0c63a0702c68763e3de7dd8f6";
 			String httpUrl = url + "?appid=" + appId + "&secret=" + appSecret + "&js_code=" + code
 					+ "&grant_type=authorization_code";
 
 			// 发送请求到微信服务器换去openid 和session_key
 			String resuslt = OpenHttps.httpRequest(httpUrl, "GET", null);
+			System.out.println("resuslt"+resuslt);
 			JsonObject obj = new JsonParser().parse(resuslt).getAsJsonObject();
 
 			if (!obj.has("errcode")) {

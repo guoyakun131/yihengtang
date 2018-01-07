@@ -33,6 +33,7 @@ import com.yihengtang.yihengtang.entity.Admin;
 import com.yihengtang.yihengtang.entity.Articles;
 import com.yihengtang.yihengtang.entity.Department;
 import com.yihengtang.yihengtang.entity.Experts;
+import com.yihengtang.yihengtang.entity.G;
 import com.yihengtang.yihengtang.entity.Img;
 import com.yihengtang.yihengtang.entity.User;
 import com.yihengtang.yihengtang.service.AdminService;
@@ -212,7 +213,7 @@ public class AdminController {
             	 // 上传到指定目录
             	  // file.transferTo(dest);
             	System.out.println(file.getOriginalFilename());
-            	String img ="D:\\eclipse-workspace\\yihengtang\\yihengtang\\src\\main\\webapp\\"+file.getOriginalFilename();
+            	String img ="D:\\workspace\\yihengtang\\yihengtang\\src\\main\\webapp\\"+file.getOriginalFilename();
                 String imgUrl = "https://qubing.net.cn/"+file.getOriginalFilename();
                 imgMapper.addUrl(imgUrl);
             	BufferedOutputStream out = new BufferedOutputStream(
@@ -280,7 +281,7 @@ public class AdminController {
             	 // 上传到指定目录
             	  // file.transferTo(dest);
             	System.out.println(file.getOriginalFilename());
-            	String img ="D:\\eclipse-workspace\\yihengtang\\yihengtang\\src\\main\\webapp\\"+file.getOriginalFilename();
+            	String img ="D:\\workspace\\yihengtang\\yihengtang\\src\\main\\webapp\\"+file.getOriginalFilename();
             	imgUrl = "https://qubing.net.cn/"+file.getOriginalFilename();
                 //imgMapper.addUrl(imgUrl);
             	BufferedOutputStream out = new BufferedOutputStream(
@@ -336,7 +337,7 @@ public class AdminController {
             	 // 上传到指定目录
             	  // file.transferTo(dest);
             	System.out.println(file.getOriginalFilename());
-            	String img ="D:\\eclipse-workspace\\yihengtang\\yihengtang\\src\\main\\webapp\\"+file.getOriginalFilename();
+            	String img ="D:\\workspace\\yihengtang\\yihengtang\\src\\main\\webapp\\"+file.getOriginalFilename();
             	imgUrl = "https://qubing.net.cn/"+file.getOriginalFilename();
                 //imgMapper.addUrl(imgUrl);
             	BufferedOutputStream out = new BufferedOutputStream(
@@ -373,7 +374,7 @@ public class AdminController {
 		String position = request.getParameter("position");
 		String profile = request.getParameter("profile");
 		//String profiles = request.getParameter("profiles");
-		String amount = request.getParameter("amount");
+		String amount = request.getParameter("amount")+"00";
 		String kanzhenshijian = request.getParameter("kanzhenshijian");
 		String location = request.getParameter("location");
 		String locations = request.getParameter("locations");
@@ -391,7 +392,7 @@ public class AdminController {
             	 // 上传到指定目录
             	  // file.transferTo(dest);
             	System.out.println(file.getOriginalFilename());
-            	String img ="D:\\eclipse-workspace\\yihengtang\\yihengtang\\src\\main\\webapp\\"+file.getOriginalFilename();
+            	String img = "D:\\workspace\\yihengtang\\yihengtang\\src\\main\\webapp\\"+file.getOriginalFilename();
             	imgUrl = "https://qubing.net.cn/"+file.getOriginalFilename();
                 //imgMapper.addUrl(imgUrl);
             	BufferedOutputStream out = new BufferedOutputStream(
@@ -432,7 +433,7 @@ public class AdminController {
 		String position = request.getParameter("position");
 		String profile = request.getParameter("profile");
 		//String profiles = request.getParameter("profiles");
-		String amount = request.getParameter("amount");
+		String amount = request.getParameter("amount")+"00";
 		String kanzhenshijian = request.getParameter("kanzhenshijian");
 		String location = request.getParameter("location");
 		String locations = request.getParameter("locations");
@@ -450,7 +451,7 @@ public class AdminController {
             	 // 上传到指定目录
             	  // file.transferTo(dest);
             	System.out.println(file.getOriginalFilename());
-            	String img ="D:\\eclipse-workspace\\yihengtang\\yihengtang\\src\\main\\webapp\\"+file.getOriginalFilename();
+            	String img ="D:\\workspace\\yihengtang\\yihengtang\\src\\main\\webapp\\"+file.getOriginalFilename();
             	imgUrl = "https://qubing.net.cn/"+file.getOriginalFilename();
                 //imgMapper.addUrl(imgUrl);
             	BufferedOutputStream out = new BufferedOutputStream(
@@ -567,6 +568,18 @@ public class AdminController {
 			e.printStackTrace();
 		}
 		return isError;
+	}
+	
+	/**
+	 * 通知栏
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/g")
+	public String g(Model model){
+		model.addAttribute("size",articlesMapper.g().size());
+		model.addAttribute("g",articlesMapper.g());
+		return "/admin/g";
 	}
 	
 //	@RequestMapping(value = "/imgUpload", method = RequestMethod.POST)
