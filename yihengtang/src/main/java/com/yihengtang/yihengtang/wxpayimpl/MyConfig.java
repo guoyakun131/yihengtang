@@ -9,19 +9,19 @@ public class MyConfig implements WXPayConfig{
 	@Override
 	public String getAppID() {
 		// TODO Auto-generated method stub
-		return "wxaffdf037ed96e75d";
+		return "wxaffdf037edd";
 	}
 
 	@Override
 	public String getMchID() {
 		// TODO Auto-generated method stub
-		return "1429475902";
+		return "1429472";
 	}
 
 	@Override
 	public String getKey() {
 		// TODO Auto-generated method stub
-		return "handanliangyikejiyouxiangongsi66";
+		return "handaiangyikejiyouxiangs6";
 	}
 
 	@Override
